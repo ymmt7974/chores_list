@@ -1,0 +1,4 @@
+# 環境変数設定ファイル
+/.env
+# マスターキー
+/config/master.key
