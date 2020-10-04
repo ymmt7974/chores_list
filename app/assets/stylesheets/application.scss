@@ -1,0 +1,178 @@
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
+
+/* ===UNIVERSAL=== */
+
+body {
+  padding-top: 80px;    // ヘッダー固定用
+  // font-family: inherit;
+  // font-family: "Comic Sans MS", "ヒラギノ丸ゴ ProN", Helvetica, Arial, sans-serif;
+  // font-family: "Helvetica Neue", "ヒラギノ丸ゴ ProN", Helvetica, Arial, sans-serif;
+  font-family: "Comic Sans MS", "ヒラギノ丸ゴ ProN", "メイリオ", sans-serif;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+
+/* ===TYPOGRAPHY=== */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2.5em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: gray;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* ===HEADER=== */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.2em;
+  font-family: Comic Sans MS;
+  color: green;
+  // text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 1px;
+  font-weight: bold;
+  &:hover {
+    color: red;
+    text-decoration: none;
+  }
+}
+
+
+/* ===FOOTER=== */
+
+
+/* ===DEV=== */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  padding-left: 10px;
+  @include box_sizing;
+  color: black;
+  background-color: lightgray;
+  border-radius: 4px;
+}
+
+
+
+/* ===SIDEBAR=== */
+
+
+// .stats {
+//   overflow: auto;
+//   margin-top: 0;
+//   padding: 0;
+//   a {
+//     float: left;
+//     padding: 0 10px;
+//     border-left: 1px solid $gray-100;
+//     color: gray;
+//     &:first-child {
+//       padding-left: 0;
+//       border: 0;
+//     }
+//     &:hover {
+//       text-decoration: none;
+//       color: blue;
+//     }
+//   }
+//   strong {
+//     display: block;
+//   }
+// }
+
+/* ===HOME=== */
+
+
+/* ===FROMS=== */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+// #session_remember_me {
+//   width: auto;
+//   margin-left: 0;
+// }
+
+
+
+// #error_explanation {
+//   color: red;
+//   ul {
+//     color: red;
+//     margin: 0 0 30px 0;
+//   }
+// }
+
+// .field_with_errors {
+//   input {
+//     @extend .is-invalid;
+//   }
+//   .form-control {
+//     color: #a94442;
+//   }
+// }
+

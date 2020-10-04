@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      = full_title(yield(:title))
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body style="background-image:url(#{asset_path('triangle-mosaic.png')}); background-size:auto;"
+    .app-title.navbar.fixed-top.navbar-expand-md.navbar-light.bg-light
+      .navbar-brand= link_to "ChoresList", root_path, id: "logo"
+      ul.navbar-nav.ml-auto
+        li.nav-item= link_to 'About', about_path, class: 'nav-link'
+        li.nav-item= link_to 'Help', help_path, class: 'nav-link'
+        li.nav-item= link_to 'Login', '#', class: 'nav-link btn btn-info text-white'
+    .container
+      - flash.each do |message_type, message|
+        div class="alert alert-#{message_type}"= message
+      = yield
+      = debug(params) if Rails.env.development? 
