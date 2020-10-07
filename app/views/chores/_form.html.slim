@@ -1,0 +1,58 @@
+
+= form_with model: @chore, local: true do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id: 'chore_name'
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 3, class: 'form-control', id: 'task_description'
+  .form-group
+    = f.label :point
+    .form-inline
+      = f.number_field :point, class: 'form-control', min: 0, id: 'chore_point'
+      label.ml-3 pt
+
+  .form-group
+    = f.label :date_type
+    = f.select :date_type, Chore.date_types.map { |k, v| [t("enum.date_types.#{k}"), v]}  \
+    , {}, {class: 'selectpicker form-control', id: 'chore_date_type'}
+
+  .form-group#fg_chore_date 
+    = f.label :date
+    .input-group.date#dtp_date data-target-input='nearest'
+      = f.text_field :date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_date"}
+      .input-group-append[data-target="#dtp_date" data-toggle="datetimepicker"]
+        .input-group-text
+          i.fa.fa-calendar
+
+  .form-group#fg_chore_start_date
+    = f.label :start_date
+    / = f.text_field :start_date, class: 'form-control', id: 'chore_start_date'
+    .input-group.date#dtp_start_date data-target-input='nearest'
+      = f.text_field :start_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_start_date"}
+      .input-group-append[data-target="#dtp_start_date" data-toggle="datetimepicker"]
+        .input-group-text
+          i.fa.fa-calendar
+  .form-group#fg_chore_end_date
+    = f.label :end_date
+    / = f.text_field :end_date, class: 'form-control', id: 'chore_end_date'
+    .input-group.date#dtp_end_date data-target-input='nearest'
+      = f.text_field :end_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_end_date"}
+      .input-group-append[data-target="#dtp_end_date" data-toggle="datetimepicker"]
+        .input-group-text
+          i.fa.fa-calendar
+
+  .form-group#fg_chore_day_of_week
+    = f.label :day_of_week
+    = f.select :day_of_week, Chore.day_names.map { |k, v| [t("enum.day_names.#{k}"), v]} \
+      , {include_blank: true}, {class: 'form-control col-md-9', id: 'chore_day_of_week'}
+  
+  .form-group#fg_chore_day_of_month
+    = f.label :day_of_month
+    .form-inline
+      = f.number_field :day_of_month, class: 'form-control', min: 1, max: 31, id: 'chore_day_of_month'
+      label.ml-3 日
+  
+  = f.submit nil, class: 'btn btn-primary mt-3'
+

@@ -1,24 +1,91 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## お手伝いリスト(ChoresList)
+ファミリー向けのWebアプリケーション
+日々のお手伝いにポイントを設定することで、お手伝いをゲームのように楽しみながらできる。
 
-Things you may want to cover:
+## 概要
+転職活動用にRailsで作ったポートフォリオのWebアプリを作成
+まずは最低限の機能を実装し、そのご状況に合わせて機能追加していく。
 
-* Ruby version
+## なぜやるか
+- 実務での開発を意識してDockerを使ってローカル開発環境を構築したい
+- 開発環境と本番環境が同じ構成となるようにしてみたい
+- 今後AWSのEC2上にNGINX + puma (Rails) + MySQLの環境でアプリをデプロイしたい
+- Railsチュートリアルでお世話になったAWS Cloud9ではなく、VS Codeを使いたい  
+（Cloud9だとログイン・遅延など多少面倒な部分があるため）
 
-* System dependencies
 
-* Configuration
+## 使用する技術、やりたいこと
+- Ruby 2.6.6
+- Ruby on Rails 5.2
+- Bootstrap4
+  - レシポンシブデザインに対応
+- RSpecでテスト
+- Ajaxを使った非同期処理
+- APIを使用する
+  - 天気予報
+  - Amazon API；商品検索
+- CircleCI
+- AWS EC2
 
-* Database creation
+開発環境
+- Mac
+- Docker
 
-* Database initialization
 
-* How to run the test suite
+本番環境
+- Docker
+- AWS（EC2,SES,S3）
+- CircleCI
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+#### Docker
+Dockerはコンテナ型仮想環境
+(理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
 
-* ...
+#### CircleCI
+CircleCIはSaas型のCI/CDサービス
+(理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
+
+#### AWS EC2
+本番環境としてAWS EC2を使用
+(理由)クラウドサービスを利用する経験を積むため。
+
+## 機能要件
+【TOP】
+- ログイン機能
+- アカウント新規作成機能
+  - アカウント作成
+  - プロフィール作成（親・子）
+
+【HOME】
+- お手伝い予定リスト表示
+- お手伝い実績登録
+
+【アカウント管理】
+- アカウント情報変更
+- プロフィール切替機能
+- プロフィール管理（作成、編集、削除）
+
+【お手伝い管理】
+- お手伝いリスト作成（親のみ）
+  - 金額設定
+  - ポイント設定
+  - 日付指定
+- お手伝い実績登録・編集・削除
+  - ポイント追加機能
+  - お手伝い評価機能
+
+
+【ポイント交換所】
+- ポイント交換商品管理（親のみ）
+- 商品交換機能
+- 通知機能
+  - ポイントで商品を交換するとメール送信
+
+【その他】
+- ログアウト
+- プロフィールロック機能（暗証番号：4桁）
+- 郵便番号による住所検索（API）
+- 天気予報表示（OpenWeatherMapのAPI）

@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
 
 /* mixins, variables, etc. */
 
@@ -8,16 +10,12 @@
   box-sizing:         border-box;
 }
 
-
-
 /* ===UNIVERSAL=== */
 
 body {
   padding-top: 80px;    // ヘッダー固定用
-  // font-family: inherit;
-  // font-family: "Comic Sans MS", "ヒラギノ丸ゴ ProN", Helvetica, Arial, sans-serif;
-  // font-family: "Helvetica Neue", "ヒラギノ丸ゴ ProN", Helvetica, Arial, sans-serif;
-  font-family: "Comic Sans MS", "ヒラギノ丸ゴ ProN", "メイリオ", sans-serif;
+  font-family: "ヒラギノ丸ゴ ProN", "メイリオ", sans-serif;
+  background-color: #FCF4D8;
 }
 
 section {
@@ -43,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -65,11 +63,12 @@ p {
 
 /* ===HEADER=== */
 
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.2em;
-  font-family: Comic Sans MS;
+  font-family: "Comic Sans MS";
   color: green;
   // text-transform: uppercase;
   letter-spacing: -1px;
@@ -159,20 +158,20 @@ input {
 
 
 
-// #error_explanation {
-//   color: red;
-//   ul {
-//     color: red;
-//     margin: 0 0 30px 0;
-//   }
-// }
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
 
-// .field_with_errors {
-//   input {
-//     @extend .is-invalid;
-//   }
-//   .form-control {
-//     color: #a94442;
-//   }
-// }
+.field_with_errors {
+  input {
+    @extend .is-invalid;
+  }
+  .form-control {
+    color: #a94442;
+  }
+}
 

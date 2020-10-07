@@ -1,0 +1,9 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      / = pluralize(object.errors.count, "error")
+      = "入力値を確認してください（#{object.errors.count} 件）"
+      ul
+        - object.errors.full_messages.each do |msg|
+          li
+            = msg

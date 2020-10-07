@@ -1,0 +1,28 @@
+- provide(:title, "お手伝い情報 詳細")
+
+h1 お手伝い情報 詳細
+
+.col-md-8.offset-md-2
+  table.table.table-hover
+    tbody
+      tr
+        th= Chore.human_attribute_name(:name)
+        td= @chore.name
+      tr
+        th= Chore.human_attribute_name(:description)
+        td= raw Rinku.auto_link(simple_format(h(@chore.description), {}, sanitize: false, wrapper_tag: "div"))
+      tr
+        th= Chore.human_attribute_name(:point)
+        td= "#{@chore.point.to_s(:delimited)} pt"
+      tr
+        th= Chore.human_attribute_name(:date_type)
+        td= format_date_type @chore
+      tr
+        th= Chore.human_attribute_name(:created_at)
+        td= l @chore.created_at, format: :long
+      tr
+        th= Chore.human_attribute_name(:updated_at)
+        td= l @chore.updated_at, format: :long
+
+  = link_to '編集', edit_chore_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @chore, method: :delete, data: { confirm: "お手伝い「#{@chore.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
