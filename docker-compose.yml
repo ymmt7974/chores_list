@@ -3,10 +3,8 @@ services:
   app:
     build:
       context: .
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+    env_file:
+      - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/chores_list
@@ -19,8 +17,8 @@ services:
     tty: true
   db:
     image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+    env_file:
+      - ./environments/db.env
     ports:
       - "3306:3306"
     volumes:

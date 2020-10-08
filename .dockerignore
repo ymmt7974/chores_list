@@ -2,3 +2,5 @@
 /.env
 # マスターキー
 /config/master.key
+
+/.environments/db.env

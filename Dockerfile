@@ -30,4 +30,5 @@ RUN bundle install
 COPY . /chores_list
 
 # puma.sockを配置するディレクトリを作成
+RUN mkdir -p tmp/pids
 RUN mkdir -p tmp/sockets

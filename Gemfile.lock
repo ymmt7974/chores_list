@@ -69,6 +69,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
+    coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -122,6 +123,12 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     popper_js (1.16.0)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.9.0)
+      byebug (~> 11.0)
+      pry (~> 0.13.0)
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
@@ -184,7 +191,7 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
-    sprockets (3.7.2)
+    sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.2)
@@ -224,7 +231,6 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap
   bootstrap4-datetime-picker-rails
-  byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   font-awesome-rails
@@ -234,6 +240,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   momentjs-rails
   mysql2 (>= 0.4.4, < 0.6.0)
+  pry-byebug
   puma (~> 3.11)
   rails (~> 5.2.4)
   rails-i18n
