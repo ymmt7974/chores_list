@@ -1,4 +1,5 @@
 class ChoresController < ApplicationController
+  before_action :authenticate_user!     # ログインユーザーのみアクセス許可
   before_action :set_chore, only: [:show, :edit, :update, :destroy]
   
   def index

@@ -33,6 +33,13 @@ textarea {
   }
 }
 
+// flash
+.alert-notice {
+  @extend .alert-info;
+}
+.alert-alert {
+  @extend .alert-danger;
+}
 
 /* ===TYPOGRAPHY=== */
 
@@ -146,15 +153,16 @@ input {
   margin-top: -10px;
   margin-bottom: 10px;
   span {
-    margin-left: 20px;
+    margin-left: 30px;
     font-weight: normal;
   }
 }
 
-// #session_remember_me {
-//   width: auto;
-//   margin-left: 0;
-// }
+#user_remember_me {
+  width: auto;
+  margin-left: 0;
+  margin-left: 0;
+}
 
 
 

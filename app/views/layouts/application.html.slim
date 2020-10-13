@@ -7,17 +7,22 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  /body style="background-image:url(#{asset_path('triangle-mosaic.png')}); background-size:auto;"
   body
     nav.app-title.navbar.fixed-top.navbar-expand-md.navbar-light style="background-color: #F8E198;"
       .navbar-brand= link_to "ChoresList", root_path, id: "logo"
       ul.navbar-nav.ml-auto
         li.nav-item= link_to 'About', about_path, class: 'nav-link'
-        li.nav-item= link_to 'Help', help_path, class: 'nav-link'
-        li.nav-item= link_to 'お手伝いリスト管理', chores_path, class: 'nav-link'
-        li.nav-item= link_to 'Login', '#', class: 'nav-link btn btn-info text-white'
+        / li.nav-item= link_to 'Help', help_path, class: 'nav-link'
+        - if user_signed_in?
+          li.nav-item= link_to 'お手伝いリスト管理', chores_path, class: 'nav-link'
+          li.nav-item= link_to current_user.name, edit_user_registration_path, class: 'nav-link'
+          li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
+          li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link btn btn-info text-white'
+
     .container
-      - flash.each do |message_type, message|
-        div class="alert alert-#{message_type}"= message
+      - flash.each do |type, msg|
+        = content_tag :div, msg, class: "alert alert-#{type}"
       = yield
       = debug(params) if Rails.env.development? 
