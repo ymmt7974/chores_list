@@ -31,7 +31,6 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  $("#user_postal_code").blur();
 
   // 住所情報自動表示
 	$('#user_postal_code').jpostal({
@@ -41,5 +40,9 @@ $(document).on('turbolinks:load', function() {
 		address : {
 			'#user_address' : '%3%4%5'
 		}
-	});
+  });
+  
+  // 初期表示：発火
+  $("#user_postal_code").keyup();
+  $("#user_postal_code").blur();
 });

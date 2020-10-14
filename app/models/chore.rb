@@ -1,9 +1,18 @@
 class Chore < ApplicationRecord
 
+  # -- [Association] --
+  belongs_to :user
+
+  # -- [validation] --
   validates :name, presence: true, length: { maximum: 30 }
   validates :point, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :date_type, presence: true
 
+  # -- scope --
+  # 最新を取得
+  scope :recent, -> { order(created_at: :desc)}
+  
+  # -- [enum] --
   # 日程
   enum date_types: {
     all_day: 0,

@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :timeoutable, :trackable
 
+  # -- [Association] --
+  has_many :chores
+
+
+  # -- [validation] --
   validates :name, presence: true, length: { maximum: 30 }
   validates :postal_code, allow_blank: true, numericality: {only_integer: true}, length: { is: 7 }
 

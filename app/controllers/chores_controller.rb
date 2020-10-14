@@ -3,11 +3,10 @@ class ChoresController < ApplicationController
   before_action :set_chore, only: [:show, :edit, :update, :destroy]
   
   def index
-    @chores = Chore.all
+    @chores = current_user.chores.recent
   end
 
   def show
-    @chore = Chore.find(params[:id])
   end
 
   def new
@@ -15,7 +14,7 @@ class ChoresController < ApplicationController
   end
 
   def create
-    @chore = Chore.new(chore_params)
+    @chore = current_user.chores.new(chore_params)
     if @chore.save
       flash[:success] = "「#{@chore.name}」のお手伝い情報を登録しました。"
       redirect_to @chore
@@ -50,9 +49,8 @@ class ChoresController < ApplicationController
                                   :day_of_week, :day_of_month)
   end
 
-  # 対象idのお手伝いを設定
+  # 対象idのお手伝い情報を設定
   def set_chore
-    @chore = Chore.find(params[:id])
-    # @chore = current_user.chores.find(params[:id])
+    @chore = current_user.chores.find(params[:id])
   end
 end
