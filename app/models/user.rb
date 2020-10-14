@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   validates :postal_code, allow_blank: true, numericality: {only_integer: true}, length: { is: 7 }
 
+
+  # -- [Accessor] --
   def postal_code=(param)
     data = param.delete("-") unless param.blank?
     write_attribute(:postal_code, data)
