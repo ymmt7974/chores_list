@@ -4,7 +4,8 @@
     = f.label :name
     = f.text_field :name, class: 'form-control'
   .form-group
-    = f.label :admin
-    = f.check_box :admin ,class: 'form-control'
+    = f.label :admin, class: 'checkbox' do
+      = f.check_box :admin, class: 'form-check-input'
+      span= Profile.human_attribute_name(:admin)
 
   = f.submit nil, class: 'btn btn-primary mt-3'
