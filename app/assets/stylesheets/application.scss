@@ -63,10 +63,10 @@ h2 {
   color: gray;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
+// p {
+//   font-size: 1.1em;
+//   line-height: 1.7em;
+// }
 
 /* ===HEADER=== */
 
@@ -183,3 +183,31 @@ input {
   }
 }
 
+
+.profile-box {
+  margin: auto;
+  padding: 0;
+  height: 150px;
+  width: 150px;
+  font-size: 24px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-plus-box {
+  margin: auto;
+  padding: 0;
+  padding-bottom: 20px;
+  height: 150px;
+  width: 150px;
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.icon_chore_check {
+  font-size: 1.3em;
+  // color: red;
+}

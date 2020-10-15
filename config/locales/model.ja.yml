@@ -8,6 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       chore: お手伝い
+      profile: プロフィール
     attributes:
       chore:
         id: ID
@@ -24,6 +25,10 @@ ja:
         user_id: ユーザーID
         created_at: 登録日時
         updated_at: 更新日時
+      profile:
+        id: ID
+        name: 名前
+        admin: 管理者
 
   enums:
     chore:

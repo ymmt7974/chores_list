@@ -1,0 +1,10 @@
+- provide(:title, "プロフィール編集")
+
+h1 プロフィール編集
+
+.col-md-8.offset-md-2
+  = render 'form'
+
+  hr.mt-5
+  = link_to "削除", profile_path(@profile),
+  data: {confirm: "ポイントが全て失われます。よろしいですか？"},method: :delete, class: 'btn btn-danger btn-block'

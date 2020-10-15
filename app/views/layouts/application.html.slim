@@ -15,7 +15,8 @@ html
         / li.nav-item= link_to 'Help', help_path, class: 'nav-link'
         - if user_signed_in?
           li.nav-item= link_to 'お手伝いリスト管理', chores_path, class: 'nav-link'
-          li.nav-item= link_to current_user.name, edit_user_registration_path, class: 'nav-link'
+          li.nav-item= link_to 'プロフィール選択', profiles_path, class: 'nav-link'
+          li.nav-item= link_to 'アカウント管理', edit_user_registration_path, class: 'nav-link'
           li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
         - else
           li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'

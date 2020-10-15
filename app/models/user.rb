@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :confirmable, :timeoutable, :trackable
 
   # -- [Association] --
-  has_many :chores
+  has_many :chores, dependent: :destroy
+  has_many :profiles, dependent: :destroy
 
 
   # -- [validation] --

@@ -11,11 +11,9 @@ module ChoresHelper
       "#{I18n.l(chore.start_date)} 〜 #{I18n.l(chore.end_date)}"
     when Chore.date_types[:day_of_week]
       return "" unless chore.wday
-      day_name = Chore.day_names.key(chore.wday)
-      Chore.human_attribute_name(:wday) + Chore.day_names_i18n[day_name]
+      "毎週#{Chore.day_names_i18n[Chore.day_names.key(chore.wday)]}"
     when Chore.date_types[:day_of_month]
-      return "" unless chore.mday
-      Chore.human_attribute_name(:mday) + " #{chore.mday}日"
+      chore.mday ? "毎月#{chore.mday}日" : ""
     end
   end
 end

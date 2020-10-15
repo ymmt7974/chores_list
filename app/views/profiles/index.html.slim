@@ -1,0 +1,16 @@
+- provide(:title, "プロフィール選択")
+
+h1 プロフィール選択
+h2 どなたが利用しますか？
+
+.col-md-8.offset-md-2
+  .row.flex-wrap
+    - @profiles.each do |p|
+      .col-4
+        = link_to p.name, select_profile_path(p), method: :post, class: 'btn btn-outline-info profile-box'
+        .mt-1.mb-3.text-center
+          = link_to edit_profile_path(p) do
+            = fa_icon 'edit' 
+            = " 編集"
+    .col-4
+      = link_to "+", new_profile_path, class: 'btn btn-secondary profile-plus-box'

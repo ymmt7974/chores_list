@@ -1,11 +1,55 @@
 - if user_signed_in?
-  h1= "こんにちは、#{current_user.name}さん"
-  p ユーザー用ページです。
+  .row
+    .col-md-4
+      .card.mb-3
+        .card-header プロフィール
+        .card-body
+          h3.card-title= "#{current_profile.name}"
+          - if current_profile.admin?
+            p.small.form-text.text-muted 管理者
+          p.card-text= "所持ポイント：#{"-"} pt"
+          
+          .mt-3
+            .text-right
+              = link_to "#" do
+                = fa_icon 'gift'
+                = " プレゼント交換"
+            .text-right
+              = link_to profiles_path do
+                = fa_icon 'group'
+                = " プロフィール切替"
+      .card
+        .card-header 天気予報
+        .card-body
+          p （実装）
+    .col-md-8
+      .card.mb-3
+        .card-header 今日のお手伝いリスト
+        .card-body
+            table.table.table-hover
+              thead.thead-default
+                tr
+                  th style="width: 40%;"= Chore.human_attribute_name(:name)
+                  th style="width: 20%;"= Chore.human_attribute_name(:point)
+                  th style="width: 30%;"= "状況"
+                  th style="width: 10%;"
+              tbody
+                - @chores.each do |chore|
+                  tr
+                    td= link_to chore.name, chore
+                    td.text-right
+                      = "#{chore.point.to_s(:delimited)} pt"
+                    td= ""
+                    td.text-right
+                      = link_to "#" do
+                        = fa_icon 'edit', class: 'icon_chore_check'
+                        / = fa_stacked_icon("edit", base: "square-o")
+
 - else
   .center.jombotrom
     h1 お手伝いリスト
     h2 ChoresList
     p ファミリー向けお手伝い応援サイト
     .mt-5
-      p = link_to 'Login', new_user_session_path, class: 'btn btn-info btn-lg'
-      p = link_to '新規登録', new_user_registration_path
+      p= link_to 'Login', new_user_session_path, class: 'btn btn-info btn-lg'
+      p= link_to '新規登録', new_user_registration_path

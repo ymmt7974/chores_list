@@ -1,5 +1,6 @@
 class ChoresController < ApplicationController
-  before_action :authenticate_user!     # ログインユーザーのみアクセス許可
+  before_action :authenticate_user!         # ログインユーザーのみアクセス許可
+  before_action :confirm_selected_profile   # プロフィール選択中のみアクセス許可
   before_action :set_chore, only: [:show, :edit, :update, :destroy]
   
   def index
