@@ -184,6 +184,7 @@ input {
 }
 
 
+/* ===プロフィール=== */
 .profile-box {
   margin: auto;
   padding: 0;
@@ -206,8 +207,14 @@ input {
   align-items: center;
 }
 
-
-.icon_chore_check {
-  font-size: 1.3em;
-  // color: red;
+/* ===お手伝いリスト=== */
+.icon_chores_list {
+  font-size: 1.6em;
+  color: #606060;
+  &:hover {
+    color: black;
+  }
+  &:active {
+    color: red;
+  }
 }

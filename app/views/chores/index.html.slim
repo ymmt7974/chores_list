@@ -19,7 +19,9 @@ h1 お手伝いリスト管理
           td.text-right
             = "#{chore.point.to_s(:delimited)} pt"
           td.text-right
-            = link_to '編集', edit_chore_path(chore), class: 'btn btn-primary mr-2 my-0 py-1'
-            = link_to '削除', chore, method: :delete,
-            data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger my-0 py-1'
+            = link_to edit_chore_path(chore) do
+              = fa_icon 'edit', class: 'icon_chores_list mr-3'
+            = link_to chore, method: :delete,
+            data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" } do
+              = fa_icon 'trash', class: 'icon_chores_list'
 
