@@ -46,7 +46,7 @@ class ChoresController < ApplicationController
   def chore_params
     params.require(:chore).permit(:name, :description,:point, :all_day, 
                                   :date_type, :date, :start_date, :end_date,
-                                  :day_of_week, :day_of_month)
+                                  :wday, :mday)
   end
 
   # 対象idのお手伝い情報を設定

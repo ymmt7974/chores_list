@@ -35,8 +35,8 @@ foobar = User.find_by(name: "foobar")
 foobar.chores.create!(name: "お皿洗い", point: 100, date_type: 0)
 foobar.chores.create!(name: "部屋掃除", point: 200, date_type: 1, date: '2020/10/10')
 foobar.chores.create!(name: "洗濯（干し・取込）", point: 50, date_type: 2, start_date: '2020/10/1', end_date: '2020/10/20')
-foobar.chores.create!(name: "お風呂掃除", point: 300, date_type: 3, day_of_week: 3)
-foobar.chores.create!(name: "草むしり", point: 1000, date_type: 4, day_of_month: 2)
+foobar.chores.create!(name: "お風呂掃除", point: 300, date_type: 3, wday: 3)
+foobar.chores.create!(name: "草むしり", point: 1000, date_type: 4, mday: 2)
 
 
 user = User.find_by(name: "testuser")

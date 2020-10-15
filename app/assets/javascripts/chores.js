@@ -16,10 +16,10 @@ $(document).on('turbolinks:load', function() {
         $("#fg_chore_end_date").slideDown();
         break;
       case '3':
-        $("#fg_chore_day_of_week").slideDown();
+        $("#fg_chore_wday").slideDown();
         break;
       case '4':
-        $("#fg_chore_day_of_month").slideDown();
+        $("#fg_chore_mday").slideDown();
         break;
       default:
     }
@@ -33,15 +33,15 @@ function date_type_all_hide() {
   $("#fg_chore_date").hide();
   $("#fg_chore_start_date").hide();
   $("#fg_chore_end_date").hide();
-  $("#fg_chore_day_of_week").hide();
-  $("#fg_chore_day_of_month").hide();
+  $("#fg_chore_wday").hide();
+  $("#fg_chore_mday").hide();
 }
 function date_type_all_slideUp() {
   $("#fg_chore_date").slideUp("fast");
   $("#fg_chore_start_date").slideUp("fast");
   $("#fg_chore_end_date").slideUp("fast");
-  $("#fg_chore_day_of_week").slideUp("fast");
-  $("#fg_chore_day_of_month").slideUp("fast");
+  $("#fg_chore_wday").slideUp("fast");
+  $("#fg_chore_mday").slideUp("fast");
 }
 
 // 日付カレンダー

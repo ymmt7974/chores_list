@@ -15,7 +15,7 @@
 
   .form-group
     = f.label :date_type
-    = f.select :date_type, Chore.date_types.map { |k, v| [t("enum.date_types.#{k}"), v]}  \
+    = f.select :date_type, Chore.date_types.map { |k, v| [t("enums.chore.date_types.#{k}"), v]}  \
     , {}, {class: 'selectpicker form-control', id: 'chore_date_type'}
 
   .form-group#fg_chore_date 
@@ -43,15 +43,15 @@
         .input-group-text
           i.fa.fa-calendar
 
-  .form-group#fg_chore_day_of_week
-    = f.label :day_of_week
-    = f.select :day_of_week, Chore.day_names.map { |k, v| [t("enum.day_names.#{k}"), v]} \
-      , {include_blank: true}, {class: 'form-control col-md-9', id: 'chore_day_of_week'}
+  .form-group#fg_chore_wday
+    = f.label :wday
+    = f.select :wday, Chore.day_names.map { |k, v| [t("enums.chore.day_names.#{k}"), v]} \
+      , {include_blank: true}, {class: 'form-control col-md-9', id: 'wday'}
   
-  .form-group#fg_chore_day_of_month
-    = f.label :day_of_month
+  .form-group#fg_chore_mday
+    = f.label :mday
     .form-inline
-      = f.number_field :day_of_month, class: 'form-control', min: 1, max: 31, id: 'chore_day_of_month'
+      = f.number_field :mday, class: 'form-control', min: 1, max: 31, id: 'chore_mday'
       label.ml-3 日
   
   = f.submit nil, class: 'btn btn-primary mt-3'

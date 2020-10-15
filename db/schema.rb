@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2020_10_14_025259) do
     t.date "date"
     t.date "start_date"
     t.date "end_date"
-    t.integer "day_of_week"
-    t.integer "day_of_month"
+    t.integer "wday"
+    t.integer "mday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

@@ -8,8 +8,8 @@ class CreateChores < ActiveRecord::Migration[5.2]
       t.date :date
       t.date :start_date
       t.date :end_date
-      t.integer :day_of_week
-      t.integer :day_of_month
+      t.integer :wday
+      t.integer :mday
 
       t.timestamps
     end
