@@ -68,6 +68,30 @@ h2 {
 //   line-height: 1.7em;
 // }
 
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 850px;
+  table-layout: fixed;
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  text-align: center;
+  border-color: inherit;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+
 /* ===HEADER=== */
 
 

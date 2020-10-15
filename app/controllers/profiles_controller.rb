@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: [:select, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show,:select, :edit, :update, :destroy]
 
   def index
     @profiles = current_user.profiles
@@ -8,6 +8,10 @@ class ProfilesController < ApplicationController
       flash.now[:notice] = "プロフィールを新規登録してください。"
       redirect_to new_profile_url
     end
+  end
+
+  def show
+    
   end
 
   def select

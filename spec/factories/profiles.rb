@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :profile do
-    name { "MyString" }
-    admin { false }
+    name { "管理者" }
+    admin { true }
+    user
   end
 end

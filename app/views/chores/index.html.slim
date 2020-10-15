@@ -2,7 +2,7 @@
 
 h1 お手伝いリスト管理
 
-= link_to '新規登録', new_chore_path, class: 'btn btn-primary'
+= link_to '新規登録', new_chore_path, class: 'btn btn-info'
 .mt-3
   table.table.table-hover
     thead.thead-default
@@ -19,9 +19,9 @@ h1 お手伝いリスト管理
           td.text-right
             = "#{chore.point.to_s(:delimited)} pt"
           td.text-right
-            = link_to edit_chore_path(chore) do
+            = link_to edit_chore_path(chore), id: "edit_#{chore.id}" do
               = fa_icon 'edit', class: 'icon_chores_list mr-3'
-            = link_to chore, method: :delete,
+            = link_to chore, method: :delete, id: "delete_#{chore.id}",
             data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" } do
               = fa_icon 'trash', class: 'icon_chores_list'
 

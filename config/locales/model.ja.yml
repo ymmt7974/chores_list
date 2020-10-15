@@ -9,6 +9,7 @@ ja:
     models:
       chore: お手伝い
       profile: プロフィール
+      point: ポイント
     attributes:
       chore:
         id: ID
@@ -29,6 +30,13 @@ ja:
         id: ID
         name: 名前
         admin: 管理者
+        created_at: 登録日時
+        updated_at: 更新日時
+      point:
+        point: ポイント
+        event: イベント
+        created_at: 登録日時
+        updated_at: 更新日時
 
   enums:
     chore:
@@ -45,3 +53,8 @@ ja:
         wednesday: 水曜日
         thursday: 木曜日
         friday: 金曜日
+    point:
+      events:
+        chore_record: お手伝い
+        chore_cancel: お手伝い取消
+        gift_exchange: プレゼント交換

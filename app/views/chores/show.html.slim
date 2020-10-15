@@ -24,5 +24,5 @@ h1 お手伝い情報 詳細
         th= Chore.human_attribute_name(:updated_at)
         td= l @chore.updated_at, format: :long
 
-  = link_to '編集', edit_chore_path, class: 'btn btn-primary mr-3'
+  = link_to '編集', edit_chore_path, class: 'btn btn-info mr-3'
   = link_to '削除', @chore, method: :delete, data: { confirm: "お手伝い「#{@chore.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

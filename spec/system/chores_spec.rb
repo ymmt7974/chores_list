@@ -4,6 +4,7 @@ describe 'お手伝いリスト管理', type: :system do
   let(:user_a) { FactoryBot.create(:user, name:'ユーザーA', email: 'a@test.com') }
   let(:user_b) { FactoryBot.create(:user, name:'ユーザーB', email: 'b@test.com') }
   let!(:chore_a) { FactoryBot.create(:chore, name:'最初のお手伝い', user: user_a) }
+  let!(:profile) { FactoryBot.create(:profile, name:'管理者', user: login_user) }
 
   before do
     # ログイン
@@ -11,6 +12,7 @@ describe 'お手伝いリスト管理', type: :system do
     fill_in 'user[email]', with: login_user.email
     fill_in 'user[password]', with: login_user.password
     click_button 'ログイン'
+    click_on '管理者'
     visit chores_path
   end
 
@@ -134,13 +136,13 @@ describe 'お手伝いリスト管理', type: :system do
       end
       context '削除ボタンを押したとき' do
         it 'confirmダイアログが表示される' do
-          click_on '削除'
+          page.first(".fa-trash").click
           expect(page.driver.browser.switch_to.alert.text).to have_content chore_a.name
           page.driver.browser.switch_to.alert.dismiss
         end
         it 'OK:正常に削除される' do
           page.accept_confirm do
-            click_on '削除'
+            page.first(".fa-trash").click
           end
           expect(page).to have_selector '.alert-success', text: chore_a.name
           visit chores_path
@@ -148,7 +150,7 @@ describe 'お手伝いリスト管理', type: :system do
         end
         it 'キャンセル:削除されない' do
           page.dismiss_confirm do
-            click_on '削除'
+            page.first(".fa-trash").click
           end
           visit chores_path
           expect(page).to have_content chore_a.name

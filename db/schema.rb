@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_15_032904) do
+ActiveRecord::Schema.define(version: 2020_10_15_130413) do
 
   create_table "chores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2020_10_15_032904) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_chores_on_user_id"
+  end
+
+  create_table "points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "point"
+    t.integer "event"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_points_on_profile_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,5 +71,6 @@ ActiveRecord::Schema.define(version: 2020_10_15_032904) do
   end
 
   add_foreign_key "chores", "users"
+  add_foreign_key "points", "profiles"
   add_foreign_key "profiles", "users"
 end
