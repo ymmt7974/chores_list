@@ -13,7 +13,7 @@ h1= t('.title')
         th style="width: 25%;"
     tbody
       - @chores.each do |chore|
-        tr
+        tr id="chore-#{chore.id}"
           td= link_to chore.name, chore
           td= format_date_type chore
           td.text-right
@@ -23,7 +23,7 @@ h1= t('.title')
               = fa_icon 'calendar-plus-o', class: 'icon_chores_list mr-3'
             = link_to edit_chore_path(chore), id: "edit_#{chore.id}" do
               = fa_icon 'edit', class: 'icon_chores_list mr-3'
-            = link_to chore, method: :delete, id: "delete_#{chore.id}",
-            data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" } do
+            = link_to chore, method: :delete, remote: true, id: "delete_#{chore.id}",
+            data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: "delete" do
               = fa_icon 'trash', class: 'icon_chores_list'
 

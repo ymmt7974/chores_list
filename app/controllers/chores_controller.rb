@@ -18,7 +18,7 @@ class ChoresController < ApplicationController
     @chore = current_user.chores.new(chore_params)
     if @chore.save
       flash[:success] = "「#{@chore.name}」のお手伝い情報を登録しました。"
-      redirect_to @chore
+      redirect_to chores_path
     else
       render :new
     end
@@ -38,8 +38,11 @@ class ChoresController < ApplicationController
 
   def destroy
     @chore.destroy
-    flash[:success] = "「#{@chore.name}」のお手伝い情報を削除しました。"
-    redirect_to chores_url
+    # head :no_content
+    respond_to do |format|
+      format.html { redirect_to chores_path }
+      format.js
+    end
   end
 
   private

@@ -44,27 +44,38 @@ function date_type_all_slideUp() {
   $("#fg_chore_mday").slideUp("fast");
 }
 
-// 日付カレンダー
-$(document).on('turbolinks:load', function() {
-  // 指定日
-  $('#dtp_date').datetimepicker({
-      locale: 'ja',
-      format: 'L'
-  });
-  // 開始日・終了日
-  $('#dtp_start_date').datetimepicker({
-    locale: 'ja',
-    format: 'L'
-  });
-  $('#dtp_end_date').datetimepicker({
-    locale: 'ja',
-    format: 'L',
-    useCurrent: false
-  });
-  $("#dtp_start_date").on("change.datetimepicker", function (e) {
-      $('#dtp_end_date').datetimepicker('minDate', e.date);
-  });
-  $("#dtp_end_date").on("change.datetimepicker", function (e) {
-      $('#dtp_start_date').datetimepicker('maxDate', e.date);
-  });
-});
+// // 日付カレンダー
+// $(document).on('turbolinks:load', function() {
+//   // 指定日
+//   $('#dtp_date').datetimepicker({
+//       locale: 'ja',
+//       format: 'L'
+//   });
+//   // 開始日・終了日
+//   $('#dtp_start_date').datetimepicker({
+//     locale: 'ja',
+//     format: 'L'
+//   });
+//   $('#dtp_end_date').datetimepicker({
+//     locale: 'ja',
+//     format: 'L',
+//     useCurrent: false
+//   });
+//   $("#dtp_start_date").on("change.datetimepicker", function (e) {
+//       $('#dtp_end_date').datetimepicker('minDate', e.date);
+//   });
+//   $("#dtp_end_date").on("change.datetimepicker", function (e) {
+//       $('#dtp_start_date').datetimepicker('maxDate', e.date);
+//   });
+// });
+
+// // お手伝いリスト削除
+// document.addEventListener('turbolinks:load', function(){
+//   document.querySelectorAll('.delete').forEach(function(a){
+//     a.addEventListener('ajax:success', function(){
+//       var td = a.parentNode;
+//       var tr = td.parentNode;
+//       tr.style.display = 'none';
+//     })
+//   })
+// })

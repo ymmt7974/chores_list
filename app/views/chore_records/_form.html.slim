@@ -3,11 +3,16 @@
     = f.label :name , class: "col-sm-3 col-form-label"
     .col-sm-9
       = f.text_field :name, value: @chore.name, readonly: true, class: "form-control-plaintext"
-    = f.label :description , class: "col-sm-3 col-form-label"
+    = f.label :point , class: "col-sm-3 col-form-label"
     .col-sm-9
-      = f.text_area :description, rows: 3, value: @chore.description, readonly: true, class: "form-control-plaintext"
+      .form-inline
+        = f.number_field :point, value: @chore.point, readonly: true, class: "form-control-plaintext"
+    - unless @chore.description.blank?
+      = f.label :description , class: "col-sm-3 col-form-label"
+      .col-sm-9
+        = f.text_area :description, rows: 3, value: @chore.description, readonly: true, class: "form-control-plaintext"
 
-hr.my-3
+hr.my-2
 
 = form_with model: @chore_record do |f|
   = render 'shared/error_messages', object: f.object

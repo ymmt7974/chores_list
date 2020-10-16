@@ -117,7 +117,7 @@ describe 'お手伝いリスト管理', type: :system do
           page.accept_confirm do
             click_on '削除'
           end
-          expect(page).to have_selector '.alert-success', text: chore_a.name
+          # expect(page).to have_selector '.alert-success', text: chore_a.name
           visit chores_path
           expect(page).to have_no_content chore_a.name
         end
@@ -144,7 +144,7 @@ describe 'お手伝いリスト管理', type: :system do
           page.accept_confirm do
             page.first(".fa-trash").click
           end
-          expect(page).to have_selector '.alert-success', text: chore_a.name
+          # expect(page).to have_selector '.alert-success', text: chore_a.name
           visit chores_path
           expect(page).to have_no_content chore_a.name
         end
