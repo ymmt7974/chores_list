@@ -45,4 +45,5 @@ $(document).on('turbolinks:load', function() {
   // 初期表示：発火
   $("#user_postal_code").keyup();
   $("#user_postal_code").blur();
+
 });

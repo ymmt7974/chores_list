@@ -9,5 +9,5 @@ h1
       = f.label :email
       = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
     .form-group
-      = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-info'
+      = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-info btn-block'
   = render 'devise/shared/links'

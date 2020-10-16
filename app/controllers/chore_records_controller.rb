@@ -28,12 +28,16 @@ class ChoreRecordsController < ApplicationController
       rescue => e
         flash[:danger] = "「#{@chore.name}」の記録を登録できませんでした。"
       end
-      # redirect_to @chore
-      # redirect_back fallback_location: root_path
-      redirect_to root_path
+      
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     else
-      flash[:danger] = "お手伝い情報が存在しません。"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path danger: "お手伝い情報が存在しません。" }
+        format.js
+      end
     end
   end
 

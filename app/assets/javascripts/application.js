@@ -21,3 +21,9 @@
 //= require tempusdominus-bootstrap-4.js
 //= jquery.jpostal.js
 //= require_tree .
+
+
+// 正規表現でセパレート
+function separate(num){
+  return String(num).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+}

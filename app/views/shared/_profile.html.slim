@@ -4,8 +4,11 @@
     h3.card-title= link_to profile.name, profile
     - if profile.admin?
       p.small.form-text.text-muted 管理者
-    p.card-text= "所持ポイント：#{profile.point.to_s(:delimited)} pt"
-    
+    p.card-text
+      | 所持ポイント：
+      span#profile_point= profile.point.to_s(:delimited)
+      |  pt
+
     .mt-3
       - if profile.id == current_profile.id
         .text-right

@@ -1,0 +1,25 @@
+
+.modal.fade[tabindex="-1" role="dialog" aria-labelledby="choreModalLabel-#{chore.id}" aria-hidden="true" id="choreModal-#{chore.id}"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+        h5.modal-title id="choreModalLabel-#{chore.id}"
+          = "【お手伝い】#{chore.name}"
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+      
+      = form_with model: chore_record, remote: true, url: chore_records_path do |f| 
+        .modal-body
+          .form-group
+            = f.label :actual_date
+            = f.date_field :actual_date, value: Time.current.strftime("%Y-%m-%d"), class: 'form-control'
+          .form-group
+            = f.label :comment
+            = f.text_area :comment, rows: 3, class: 'form-control'
+
+          = hidden_field_tag :chore_id, chore.id
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-dismiss="modal"]
+            | 閉じる
+          = f.submit "記録", class: 'btn btn-info'

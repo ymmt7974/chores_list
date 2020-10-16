@@ -1,0 +1,12 @@
+$("textarea").val();
+$("input").val();
+$("#choreModal-<%= @chore.id %>").modal('hide');
+$("#chore_status-<%= @chore.id %>").text('<%= @chore.today_status %>');
+var min = parseInt( $("#profile_point").text().replace(',','') );
+$({count: min}).animate({count: <%= current_profile.point %>}, {
+	duration: 1000,
+	easing: 'linear',
+	progress: function() { 
+	    $('#profile_point').html(separate(Math.ceil(this.count))); 
+	}
+});
