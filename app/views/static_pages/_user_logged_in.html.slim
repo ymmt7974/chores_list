@@ -13,9 +13,9 @@
         table.table.table-hover
           thead.thead-default
             tr
-              th style="width: 40%;"= Chore.human_attribute_name(:name)
+              th style="width: 50%;"= Chore.human_attribute_name(:name)
               th style="width: 20%;"= Chore.human_attribute_name(:point)
-              th style="width: 30%;"= "状況"
+              th style="width: 20%;"= "状況"
               th style="width: 10%;"
           tbody
             - @chores.each do |chore|
@@ -23,7 +23,8 @@
                 td= link_to chore.name, chore
                 td.text-right
                   = "#{chore.point.to_s(:delimited)} pt"
-                td= ""
+                td.center
+                  = chore.today_status
                 td.text-right
-                  = link_to "#" do
+                  = link_to new_chore_chore_record_path(chore) do
                     = fa_icon 'calendar-plus-o', class: 'icon_chores_list'

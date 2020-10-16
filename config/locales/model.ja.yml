@@ -10,6 +10,7 @@ ja:
       chore: お手伝い
       profile: プロフィール
       point: ポイント
+      chore_record: お手伝い記録
     attributes:
       chore:
         id: ID
@@ -35,6 +36,11 @@ ja:
       point:
         point: ポイント
         event: イベント
+        created_at: 登録日時
+        updated_at: 更新日時
+      chore_record:
+        actual_date: 実施日
+        comment: コメント
         created_at: 登録日時
         updated_at: 更新日時
 

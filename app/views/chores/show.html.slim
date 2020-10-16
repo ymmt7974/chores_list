@@ -1,6 +1,5 @@
-- provide(:title, "お手伝い情報 詳細")
-
-h1 お手伝い情報 詳細
+- provide(:title, t('.title'))
+h1= t('.title')
 
 .col-md-8.offset-md-2
   table.table.table-hover
@@ -24,5 +23,34 @@ h1 お手伝い情報 詳細
         th= Chore.human_attribute_name(:updated_at)
         td= l @chore.updated_at, format: :long
 
-  = link_to '編集', edit_chore_path, class: 'btn btn-info mr-3'
-  = link_to '削除', @chore, method: :delete, data: { confirm: "お手伝い「#{@chore.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+  = link_to 'お手伝いを記録', new_chore_chore_record_path(@chore.id), class: 'btn btn-info mr-3'
+  - if current_profile.admin?
+    = link_to '編集', edit_chore_path, class: 'btn btn-info mr-3'
+    = link_to '削除', @chore, method: :delete, \
+    data: { confirm: "お手伝い「#{@chore.name}」を削除します。よろしいですか？" }, \
+    class: 'btn btn-danger mr-3'
+
+  hr.my-5
+
+  h2 お手伝い履歴
+
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th style="width: 20%;"= "担当者"
+        th style="width: 25%;"= ChoreRecord.human_attribute_name(:actual_date)
+        th style="width: 40%;"= ChoreRecord.human_attribute_name(:comment)
+        th style="width: 15%;"
+    tbody
+      - @chore.chore_records.recent.each do |record|
+        tr
+          td= record.profile.name
+          td.center.small
+            = l(record.actual_date, format: :long)
+          td= record.comment
+          td.text-right
+            = link_to edit_chore_chore_record_path(@chore,record) do
+              = fa_icon 'edit', class: 'icon_chores_list mr-3'
+            = link_to record, method: :delete, \
+            data: { confirm: "#{l(record.actual_date, format: :long)}の記録を削除します。よろしいですか？" } do
+              = fa_icon 'trash', class: 'icon_chores_list'

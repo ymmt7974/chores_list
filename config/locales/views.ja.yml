@@ -1,0 +1,32 @@
+ja:
+  chores:
+    new:
+      title: "お手伝い情報 新規登録"
+    edit:
+      title: "お手伝い情報 編集"
+    show:
+      title: "お手伝い情報"
+    index:
+      title: "お手伝いリスト"
+  chore_records:
+    new:
+      title: "お手伝い記録 新規登録"
+    edit:
+      title: "お手伝い記録 編集"
+  profiles:
+    new:
+      title: "プロフィール新規登録"
+    edit:
+      title: "プロフィール編集"
+    show:
+      title: "プロフィール"
+    index:
+      title: "プロフィール切替"
+  static_pages:
+    home:
+      title: "お手伝いリスト"
+    about:
+      title: "お手伝いリストについて"
+    help:
+      title: "ヘルプ"
+    

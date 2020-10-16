@@ -2,6 +2,7 @@ class Chore < ApplicationRecord
 
   # -- [Association] --
   belongs_to :user
+  has_many :chore_records, dependent: :destroy
 
   # -- [validation] --
   validates :name, presence: true, length: { maximum: 30 }
@@ -10,9 +11,15 @@ class Chore < ApplicationRecord
   validates :date, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:target] }
   validates :start_date, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:range] }
   validates :end_date, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:range] }
+  validate :start_end_check, if: Proc.new { |c| c.date_type == Chore.date_types[:range] }
   validates :wday, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:day_of_week] }
   validates :mday, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:day_of_month] }
 
+  def start_end_check
+    if self.start_date && self.end_date
+      errors.add(:end_date, "の日付を正しく記入して下さい。") unless self.start_date < self.end_date
+    end
+  end
 
   # -- [scope] --
   # 最新を取得
@@ -34,4 +41,9 @@ class Chore < ApplicationRecord
     thursday: 4,
     friday: 5
   }
+
+  # 今日のステータスを取得
+  def today_status
+    today_record = self.chore_records.exists?(actual_date: Time.current) ? "完了" : ""
+  end
 end

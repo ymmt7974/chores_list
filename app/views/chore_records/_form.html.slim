@@ -1,0 +1,22 @@
+= form_with model: @chore do |f|
+  .form-group.row
+    = f.label :name , class: "col-sm-3 col-form-label"
+    .col-sm-9
+      = f.text_field :name, value: @chore.name, readonly: true, class: "form-control-plaintext"
+    = f.label :description , class: "col-sm-3 col-form-label"
+    .col-sm-9
+      = f.text_area :description, rows: 3, value: @chore.description, readonly: true, class: "form-control-plaintext"
+
+hr.my-3
+
+= form_with model: @chore_record do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :actual_date
+    = f.date_field :actual_date, class: 'form-control'
+  .form-group
+    = f.label :comment
+    = f.text_area :comment, rows: 3, class: 'form-control'
+
+  = hidden_field_tag :chore_id, @chore.id
+  = f.submit nil, class: 'btn btn-info mt-3'

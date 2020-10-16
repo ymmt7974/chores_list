@@ -1,6 +1,5 @@
-- provide(:title, "プロフィール編集")
-
-h1 プロフィール編集
+- provide(:title, t('.title'))
+h1= t('.title')
 
 .col-md-8.offset-md-2
   = render 'form'

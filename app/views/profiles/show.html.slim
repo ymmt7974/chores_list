@@ -1,6 +1,5 @@
-- provide(:title, "プロフィール")
-
-h1 プロフィール
+- provide(:title, t('.title'))
+h1= t('.title')
 
 .row
   .col-md-4
@@ -16,7 +15,7 @@ h1 プロフィール
             tr
               td お手伝いをした数
               td.text-right
-                = "#{"-"} 回"
+                = "#{@profile.chores_count.to_s(:delimited)} 回"
             tr
               td 累計獲得ポイント数
               td.text-right
@@ -36,20 +35,23 @@ h1 プロフィール
         table.table.table-hover
           thead.thead-default
             tr
-              th style="width: 25%;"= Point.human_attribute_name(:event)
+              th style="width: 20%;"= Point.human_attribute_name(:event)
+              th style="width: 20%;"= "名称"
               th style="width: 20%;"= Point.human_attribute_name(:point)
-              th style="width: 35%;"= Point.human_attribute_name(:created_at)
-              th style="width: 20%;"= "実績"
+              th style="width: 30%;"= Point.human_attribute_name(:created_at)
+              th style="width: 10%;"
           tbody
-            - @profile.points.each do |point|
+            - @profile.points.recent.each do |point|
               tr
+                - rcd = point.chore_record
                 td= Point.events_i18n[Point.events.key(point.event)]
+                td= rcd ? rcd.chore.name : "-"
                 td.text-right
                   = (point.point.positive? ? "+": "") + "#{point.point.to_s(:delimited)} pt"
                 td.center.small
                   = l(point.created_at, format: :long)
                 td.center
-                  - if point.event == Point.events[:chore_record]
-                    = link_to "#" do
+                  - if point.event == Point.events[:chore_record] && rcd
+                    = link_to rcd.chore do
                       = fa_icon 'calendar-o', class: 'icon_chores_list'
 

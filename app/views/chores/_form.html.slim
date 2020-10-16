@@ -20,28 +20,29 @@
 
   .form-group#fg_chore_date 
     = f.label :date
-    .input-group.date#dtp_date data-target-input='nearest'
-      = f.text_field :date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_date"}
-      .input-group-append[data-target="#dtp_date" data-toggle="datetimepicker"]
-        .input-group-text
-          i.fa.fa-calendar
+    = f.date_field  :date, class: "form-control"
+    / .input-group.date#dtp_date data-target-input='nearest'
+    /   = f.text_field :date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_date"}
+    /   .input-group-append[data-target="#dtp_date" data-toggle="datetimepicker"]
+    /     .input-group-text
+    /       i.fa.fa-calendar
 
   .form-group#fg_chore_start_date
     = f.label :start_date
-    / = f.text_field :start_date, class: 'form-control', id: 'chore_start_date'
-    .input-group.date#dtp_start_date data-target-input='nearest'
-      = f.text_field :start_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_start_date"}
-      .input-group-append[data-target="#dtp_start_date" data-toggle="datetimepicker"]
-        .input-group-text
-          i.fa.fa-calendar
+    = f.date_field :start_date, class: 'form-control', id: 'chore_start_date'
+    / .input-group.date#dtp_start_date data-target-input='nearest'
+    /   = f.text_field :start_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_start_date"}
+    /   .input-group-append[data-target="#dtp_start_date" data-toggle="datetimepicker"]
+    /     .input-group-text
+    /       i.fa.fa-calendar
   .form-group#fg_chore_end_date
     = f.label :end_date
-    / = f.text_field :end_date, class: 'form-control', id: 'chore_end_date'
-    .input-group.date#dtp_end_date data-target-input='nearest'
-      = f.text_field :end_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_end_date"}
-      .input-group-append[data-target="#dtp_end_date" data-toggle="datetimepicker"]
-        .input-group-text
-          i.fa.fa-calendar
+    = f.date_field :end_date, class: 'form-control', id: 'chore_end_date'
+    / .input-group.date#dtp_end_date data-target-input='nearest'
+    /   = f.text_field :end_date, placeholder: "日付を選択", class: "form-control datetimepicker-input", data: {toggle: "datetimepicker", target: "#dtp_end_date"}
+    /   .input-group-append[data-target="#dtp_end_date" data-toggle="datetimepicker"]
+    /     .input-group-text
+    /       i.fa.fa-calendar
 
   .form-group#fg_chore_wday
     = f.label :wday

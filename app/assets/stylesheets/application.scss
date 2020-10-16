@@ -115,19 +115,6 @@ tbody {
 /* ===FOOTER=== */
 
 
-/* ===DEV=== */
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  padding-left: 10px;
-  @include box_sizing;
-  color: black;
-  background-color: lightgray;
-  border-radius: 4px;
-}
 
 
 
@@ -238,4 +225,20 @@ input {
   &:active {
     color: red;
   }
+}
+
+
+
+/* ===DEV=== */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  padding-left: 10px;
+  @include box_sizing;
+  color: black;
+  background-color: lightgray;
+  border-radius: 4px;
 }
