@@ -3,9 +3,11 @@ class Chore < ApplicationRecord
   # -- [Association] --
   belongs_to :user
   has_many :chore_records, dependent: :destroy
+  has_many :points
 
   # -- [validation] --
   validates :name, presence: true, length: { maximum: 30 }
+  validates :description, length: { maximum: 255 }
   validates :point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :date_type, presence: true
   validates :date, presence: true, if: Proc.new { |c| c.date_type == Chore.date_types[:target] }

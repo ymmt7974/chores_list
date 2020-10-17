@@ -15,14 +15,14 @@
     - if current_page?(profile)
       .text-left
         = link_to edit_profile_path(profile) do
-          = fa_icon 'edit', class: 'link-icon'
+          = fa_icon 'edit', class: 'icon_link'
           = " 編集"
-    - if profile.id == current_profile.id
+    - if profile.id == current_profile.id && !current_page?(rewords_path)
       .text-left
-        = link_to "#" do
-          = fa_icon 'gift', class: 'link-icon'
-          = " プレゼント交換"
+        = link_to rewords_path do
+          = fa_icon 'gift', class: 'icon_link'
+          = " ポイント交換所"
     .text-left
       = link_to profiles_path do
-        = fa_icon 'group', class: 'link-icon'
+        = fa_icon 'group', class: 'icon_link'
         = " プロフィール切替"

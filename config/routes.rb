@@ -12,4 +12,5 @@ Rails.application.routes.draw do
       post :select
     end
   end
+  resources :rewords
 end

@@ -3,14 +3,14 @@
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name
-    = f.text_field :name, class: 'form-control', id: 'chore_name'
+    = f.text_field :name, required: true, maxlength: 30, class: 'form-control', id: 'chore_name'
   .form-group
     = f.label :description
-    = f.text_area :description, rows: 3, class: 'form-control', id: 'task_description'
+    = f.text_area :description, rows: 3, maxlength: 255, class: 'form-control', id: 'task_description'
   .form-group
     = f.label :point
     .form-inline
-      = f.number_field :point, class: 'form-control', min: 0, id: 'chore_point'
+      = f.number_field :point, required: true, min: 0, class: 'form-control', id: 'chore_point'
       label.ml-3 pt
 
   .form-group

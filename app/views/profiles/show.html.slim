@@ -41,14 +41,12 @@ h1= t('.title')
           tbody
             - @profile.points.recent.each do |point|
               tr
-                - chore_record = point.chore_record
                 td= Point.events_i18n[Point.events.key(point.event)]
-                / td= chore_record ? chore_record.chore.name : "-"
                 td
-                  - if Point.events.slice(:chore_record, :chore_cancel).values.include?(point.event) && chore_record
-                    = link_to chore_record.chore do
+                  - if Point.events.slice(:chore_record, :chore_cancel).values.include?(point.event)
+                    = link_to point.chore do
                       = fa_icon 'calendar-o', class: 'icon_chores_list'
-                      span.ml-2= chore_record.chore.name
+                      span.ml-2= point.chore&.name
                   - if point.event == Point.events[:reward_exchange]
                     = "（プレゼント）"
                 td.text-right

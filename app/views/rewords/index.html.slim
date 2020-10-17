@@ -1,0 +1,42 @@
+- provide(:title, t('.title'))
+h1= t('.title')
+
+
+.row
+  .col-md-4
+    = render 'shared/profile', profile: current_profile
+  .mb-3
+  .col-md-8
+    .card
+      .card-header 商品リスト
+      .card-body.card-body_mainlist
+        table.table.table-hover
+          thead.thead-default
+            tr
+              th style="width: 25%;"= Reword.human_attribute_name(:name)
+              th style="width: 30%;"= Reword.human_attribute_name(:description)
+              th style="width: 20%;"= Reword.human_attribute_name(:cost_point)
+              th style="width: 25%;"
+          tbody
+            - @rewords.each do |reword|
+              tr id="reword-#{reword.id}"
+                td
+                  - if reword.asin.present?
+                    = link_to reword.name, "https://www.amazon.co.jp/s?k=#{reword.name}&__mk_ja_JP=カタカナ&ref=nb_sb_noss", target: :_blank
+                  - else
+                    = reword.name
+                td.small= raw Rinku.auto_link(simple_format(h(reword.description), {}, sanitize: false, wrapper_tag: "div"))
+                td.text-right
+                  = "#{reword.cost_point.to_s(:delimited)} pt"
+                td.text-right
+                  - if current_profile.admin?
+                    = link_to edit_reword_path(reword), id: "edit_#{reword.id}" do
+                      = fa_icon 'edit', class: 'icon_list mr-3'
+                    = link_to reword, method: :delete, remote: true, id: "delete_#{reword.id}",
+                    data: { confirm: "「#{reword.name}」を削除します。よろしいですか？" }, class: "delete" do
+                      = fa_icon 'trash', class: 'icon_list mr-3'
+                  = link_to "交換", '#', class: 'btn btn-info'
+      .card-footer
+        - if current_profile.admin?
+          = link_to '新規登録', new_reword_path, class: 'btn btn-info'
+

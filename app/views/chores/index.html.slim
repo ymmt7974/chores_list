@@ -3,7 +3,7 @@ h1= t('.title')
 
 .card
   .card-header お手伝いリスト
-  .card-body
+  .card-body.card-body_mainlist
     table.table.table-hover
       thead.thead-default
         tr
@@ -20,13 +20,13 @@ h1= t('.title')
               = "#{chore.point.to_s(:delimited)} pt"
             td.text-right
               = link_to new_chore_chore_record_path(chore_id: chore.id), id: "new_#{chore.id}" do
-                = fa_icon 'calendar-plus-o', class: 'icon_chores_list mr-3'
+                = fa_icon 'calendar-plus-o', class: 'icon_list mr-3'
               - if current_profile.admin?
                 = link_to edit_chore_path(chore), id: "edit_#{chore.id}" do
-                  = fa_icon 'edit', class: 'icon_chores_list mr-3'
+                  = fa_icon 'edit', class: 'icon_list mr-3'
                 = link_to chore, method: :delete, remote: true, id: "delete_#{chore.id}",
                 data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: "delete" do
-                  = fa_icon 'trash', class: 'icon_chores_list'
+                  = fa_icon 'trash', class: 'icon_list'
   .card-footer
     - if current_profile.admin?
       = link_to '新規登録', new_chore_path, class: 'btn btn-info'

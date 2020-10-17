@@ -11,6 +11,7 @@ ja:
       profile: プロフィール
       point: ポイント
       chore_record: お手伝い記録
+      reword: プレゼント
     attributes:
       chore:
         id: ID
@@ -41,6 +42,14 @@ ja:
       chore_record:
         actual_date: 実施日
         comment: コメント
+        created_at: 登録日時
+        updated_at: 更新日時
+      reword:
+        name: 商品名
+        description: 説明
+        cost_point: 必要ポイント
+        asin: ASIN
+        user_id: ユーザーID
         created_at: 登録日時
         updated_at: 更新日時
 

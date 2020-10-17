@@ -97,7 +97,11 @@ tbody {
   background-color: #F8E198;
 }
 
-
+.card-body_mainlist {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 500px;
+}
 
 /* ===HEADER=== */
 
@@ -224,7 +228,7 @@ input {
 
 /* ===お手伝いリスト=== */
 
-.link-icon {
+.icon_link {
   font-size: 1.5em;
 }
 .fa-group {
@@ -232,7 +236,7 @@ input {
 }
 
 
-.icon_chores_list {
+.icon_list {
   font-size: 1.6em;
   color: #606060;
   &:hover {

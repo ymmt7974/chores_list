@@ -24,6 +24,13 @@ ja:
       title: "プロフィール"
     index:
       title: "プロフィール切替"
+  rewords:
+    new:
+      title: "商品情報 新規登録"
+    edit:
+      title: "商品情報 編集"
+    index:
+      title: "ポイント交換所"
   static_pages:
     home:
       chores:

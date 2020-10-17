@@ -88,7 +88,8 @@ class ChoreRecordsController < ApplicationController
   def new_point(point: point, event: event, record: record)
     point = current_profile.points.build(point: point, event: event)
     point.profile_id = record.profile_id
-    point.chore_record_id = record&.id
+    point.chore_record_id = record.id
+    point.chore_id = record.chore_id
     return point
   end
 

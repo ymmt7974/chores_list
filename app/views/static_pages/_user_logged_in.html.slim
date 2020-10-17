@@ -6,11 +6,11 @@ h1= t('title')
     .card
       .card-header 天気予報
       .card-body
-        p （未実装）
+        p.small.text-muted （未実装）
   .col-md-8
     .card
       .card-header 今日のお手伝いリスト
-      .card-body
+      .card-body.card-body_mainlist
         .chores-list
           = render 'chores', chores: @chores
         

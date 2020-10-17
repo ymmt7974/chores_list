@@ -8,6 +8,7 @@ class User < ApplicationRecord
   # -- [Association] --
   has_many :chores, dependent: :destroy
   has_many :profiles, dependent: :destroy
+  has_many :rewords, dependent: :destroy
 
 
   # -- [validation] --

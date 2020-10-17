@@ -3,6 +3,8 @@ class Point < ApplicationRecord
   # -- [Association] --
   belongs_to :profile
   belongs_to :chore_record, optional: true
+  belongs_to :chore, optional: true
+  belongs_to :reword, optional: true
 
   # -- [scope] --
   # 最新を取得

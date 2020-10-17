@@ -1,0 +1,20 @@
+
+= form_with model: @reword, local: true do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, required: true, maxlength: 30, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 3, maxlength: 255, class: 'form-control'
+  .form-group
+    = f.label :cost_point
+    .form-inline
+      = f.number_field :cost_point, required: true, min: 0, class: 'form-control'
+      label.ml-3 pt
+  .form-group
+    = f.label :asin
+    = f.text_field :asin, class: 'form-control'
+
+  = f.submit nil, class: 'btn btn-info btn-block'
+
