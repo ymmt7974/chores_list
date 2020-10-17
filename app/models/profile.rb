@@ -9,10 +9,6 @@ class Profile < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
 
 
-  # お手伝い件数
-  def chores_count
-    self.points.where(event: Point.events[:chore_record]).count
-  end
   # 所持ポイント
   def point
     self.points.sum(:point)
@@ -24,6 +20,10 @@ class Profile < ApplicationRecord
   # お手伝い件数
   def chores_count
     self.chore_records.count
+  end
+  # ポイント交換件数
+  def rewords_count
+    self.points.where(event: Point.events[:reward_exchange]).count
   end
 
 end

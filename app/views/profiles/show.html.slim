@@ -21,8 +21,8 @@ h1= t('.title')
               td 累計獲得ポイント数
               td.text-right= "#{@profile.total_point.to_s(:delimited)} pt"
             tr
-              td 交換したプレゼントの数
-              td.text-right= "#{"-"} 個"
+              td ポイント交換した商品数
+              td.text-right= "#{@profile.rewords_count.to_s(:delimited)} 回"
 
         / = link_to "#" do
         /   = fa_icon 'plus-circle 2x'
@@ -48,7 +48,7 @@ h1= t('.title')
                       = fa_icon 'calendar-o', class: 'icon_chores_list'
                       span.ml-2= point.chore&.name
                   - if point.event == Point.events[:reward_exchange]
-                    = "（プレゼント）"
+                    = point.reword.name
                 td.text-right
                   = (point.point.positive? ? "+": "") + "#{point.point.to_s(:delimited)} pt"
                 td.center.small

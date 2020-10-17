@@ -1,0 +1,44 @@
+- rewords.each do |reword|
+  .modal.fade[tabindex="-1" role="dialog" aria-labelledby="exchangeModalLabel-#{reword.id}" aria-hidden="true" id="exchangeModal-#{reword.id}"]
+    .modal-dialog[role="document"]
+      .modal-content
+        .modal-header
+          h5.modal-title id="exchangeModalLabel-#{reword.id}"
+            = "【ポイント交換】"
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+        
+        .modal-body
+          p 選択した商品と交換しますか？
+          
+          h1.mb-5= "#{reword.name}"
+          
+          table.table
+            tbody
+              tr
+                th.text-left style="width: 35%;"
+                  = Reword.human_attribute_name(:cost_point)
+                td.text-right style="width: 65%;"
+                  = "#{reword.cost_point.to_s(:delimited)} pt"
+              tr
+                th.text-left 所持ポイント
+                td.text-right
+                  - after_point = current_profile.point - reword.cost_point
+                  = "#{current_profile.point.to_s(:delimited)} pt　→　"
+                  - if after_point < 0
+                    span.text-danger= "#{after_point.to_s(:delimited)} pt"
+                  - else
+                    span= "#{after_point.to_s(:delimited)} pt"
+                  
+          - if after_point < 0
+            p.text-right.text-danger
+              | ポイントが不足しています
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-dismiss="modal"]
+            | 閉じる
+          - if after_point >= 0
+            = link_to "交換", exchange_reword_path(reword), method: :post, remote: true, class: 'btn btn-info'
+          - else
+            button.btn.btn-info[disabled=true]
+              | 交換

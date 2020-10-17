@@ -1,7 +1,7 @@
 class RewordsController < ApplicationController
   before_action :authenticate_user!         # ログインユーザーのみアクセス許可
   before_action :confirm_selected_profile   # プロフィール選択中のみアクセス許可
-  before_action :set_reword, only: [:edit, :update, :destroy]
+  before_action :set_reword, only: [:edit, :update, :destroy, :exchange]
 
   def index
     @rewords = current_user.rewords
@@ -42,6 +42,25 @@ class RewordsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to rewords_path }
       format.js
+    end
+  end
+
+  def exchange
+    @point = current_profile.points
+                  .build(point: -@reword.cost_point,
+                        event: Point.events[:reward_exchange],
+                        reword: @reword)
+    if @point.save
+      @rewords = current_user.rewords
+      respond_to do |format|
+        format.html { redirect_to rewords_path, flash: {success: "「#{@reword.name}」とポイント交換しました。"} }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to rewords_path, flash: {danger: "「#{@reword.name}」とポイントを交換できませんでした。"} }
+        format.js
+      end
     end
   end
 

@@ -28,14 +28,17 @@ h1= t('.title')
                 td.small= raw Rinku.auto_link(simple_format(h(reword.description), {}, sanitize: false, wrapper_tag: "div"))
                 td.text-right
                   = "#{reword.cost_point.to_s(:delimited)} pt"
-                td.text-right
+                td.text-center
+                  = link_to "交換", '#', data: {toggle:"modal",target:"#exchangeModal-#{reword.id}"}, class: 'btn btn-info'
                   - if current_profile.admin?
                     = link_to edit_reword_path(reword), id: "edit_#{reword.id}" do
-                      = fa_icon 'edit', class: 'icon_list mr-3'
+                      = fa_icon 'edit', class: 'icon_list mr-2'
                     = link_to reword, method: :delete, remote: true, id: "delete_#{reword.id}",
                     data: { confirm: "「#{reword.name}」を削除します。よろしいですか？" }, class: "delete" do
-                      = fa_icon 'trash', class: 'icon_list mr-3'
-                  = link_to "交換", '#', class: 'btn btn-info'
+                      = fa_icon 'trash', class: 'icon_list mr-2'
+                  
+        div.exchangeModal
+          = render 'exchange_modal', rewords: @rewords
       .card-footer
         - if current_profile.admin?
           = link_to '新規登録', new_reword_path, class: 'btn btn-info'

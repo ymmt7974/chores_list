@@ -12,5 +12,9 @@ Rails.application.routes.draw do
       post :select
     end
   end
-  resources :rewords
+  resources :rewords do
+    member do
+      post :exchange
+    end
+  end
 end

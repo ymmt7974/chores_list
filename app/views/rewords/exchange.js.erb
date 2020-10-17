@@ -1,0 +1,12 @@
+$("#exchangeModal-<%= @reword.id %>").modal('hide');
+$('div.modal-backdrop').remove();
+
+var min = parseInt( $("#profile_point").text().replace(',','') );
+$({count: min}).animate({count: <%= current_profile.point %>}, {
+	duration: 1000,
+	easing: 'linear',
+	progress: function() { 
+	    $('#profile_point').html(separate(Math.ceil(this.count))); 
+	}
+});
+$(".exchangeModal").html("<%= escape_javascript(render 'exchange_modal', rewords: @rewords) %>");
