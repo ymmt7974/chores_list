@@ -14,10 +14,10 @@ class ChoreRecordsController < ApplicationController
     if @chore
       @chore_record = new_record(@chore)
       begin
-        #ChoreRecordを作成
+        # Transaction：ChoreRecordを作成
         ChoreRecord.transaction do
           @chore_record.save!
-          #Pointを作成
+          # Transaction：Pointを作成
           Point.transaction do
             @point = new_point(point: @chore.point, event: Point.events[:chore_record], record: @chore_record)
             @point.save!
@@ -30,12 +30,12 @@ class ChoreRecordsController < ApplicationController
       end
       
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to @chore, flash: {success: "「#{@chore.name}」のお手伝い記録を登録しました。"} }
         format.js
       end
     else
       respond_to do |format|
-        format.html { redirect_to root_path danger: "お手伝い情報が存在しません。" }
+        format.html { redirect_to root_path, flash: {danger: "お手伝い情報が存在しません。"} }
         format.js
       end
     end
@@ -48,7 +48,7 @@ class ChoreRecordsController < ApplicationController
 
   def update
     if @chore_record.update_attributes(chore_record_params)
-      flash[:success] = "「#{@chore.name}」の記録を更新しました。"
+      flash[:success] = "「#{@chore.name}」のお手伝い記録を更新しました。"
       redirect_to @chore
     else
       render :edit
@@ -66,8 +66,7 @@ class ChoreRecordsController < ApplicationController
         end
       end
     rescue => e
-      flash[:danger] = "「#{@chore.name}」の記録を削除できませんでした。"
-      flash[:danger] = e.message
+      flash[:danger] = "「#{@chore.name}」のお手伝い記録を削除できませんでした。"
     end
     redirect_back(fallback_location: root_url)
   end

@@ -14,11 +14,11 @@
 
 hr.my-2
 
-= form_with model: @chore_record, remote: true do |f|
+= form_with model: @chore_record, local: true do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :actual_date
-    = f.date_field :actual_date, class: 'form-control'
+    = f.date_field :actual_date, required: true, class: 'form-control'
   .form-group
     = f.label :comment
     = f.text_area :comment, rows: 3, class: 'form-control'

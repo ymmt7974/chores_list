@@ -13,10 +13,11 @@
         .modal-body
           .form-group
             = f.label :actual_date
-            = f.date_field :actual_date, value: Time.current.strftime("%Y-%m-%d"), class: 'form-control'
+            = f.date_field :actual_date, value: Time.current.strftime("%Y-%m-%d"), required: true \
+            , class: 'form-control', id: "choreModal_date-#{chore.id}"
           .form-group
             = f.label :comment
-            = f.text_area :comment, rows: 3, class: 'form-control'
+            = f.text_area :comment, rows: 3, class: 'form-control', id: "choreModal_comment-#{chore.id}"
 
           = hidden_field_tag :chore_id, chore.id
         .modal-footer

@@ -22,6 +22,10 @@
 //= jquery.jpostal.js
 //= require_tree .
 
+// flashメッセージスライドアップ
+$(function(){
+  setTimeout("$('.flash').slideUp('slow')", 2000);
+});
 
 // 正規表現でセパレート
 function separate(num){

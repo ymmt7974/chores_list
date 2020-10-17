@@ -4,26 +4,25 @@ h1= t('.title')
 .row
   .col-md-4
     = render 'shared/profile', profile: @profile
-
   .mb-3
   .col-md-8
     .card
-      .card-header お手伝いの記録
+      .card-header お手伝いの総合記録
       .card-body
         table.table.table-hover
           tbody
             tr
+              td お手伝いを開始した日
+              td.text-right= l(@profile.created_at, format: :ymd)
+            tr
               td お手伝いをした数
-              td.text-right
-                = "#{@profile.chores_count.to_s(:delimited)} 回"
+              td.text-right= "#{@profile.chores_count.to_s(:delimited)} 回"
             tr
               td 累計獲得ポイント数
-              td.text-right
-                = "#{@profile.total_point.to_s(:delimited)} pt"
+              td.text-right= "#{@profile.total_point.to_s(:delimited)} pt"
             tr
               td 交換したプレゼントの数
-              td.text-right
-                = "#{"-"} 個"
+              td.text-right= "#{"-"} 個"
 
         / = link_to "#" do
         /   = fa_icon 'plus-circle 2x'
@@ -36,22 +35,25 @@ h1= t('.title')
           thead.thead-default
             tr
               th style="width: 20%;"= Point.human_attribute_name(:event)
-              th style="width: 20%;"= "名称"
+              th style="width: 30%;"= "名称"
               th style="width: 20%;"= Point.human_attribute_name(:point)
               th style="width: 30%;"= Point.human_attribute_name(:created_at)
-              th style="width: 10%;"
           tbody
             - @profile.points.recent.each do |point|
               tr
-                - rcd = point.chore_record
+                - chore_record = point.chore_record
                 td= Point.events_i18n[Point.events.key(point.event)]
-                td= rcd ? rcd.chore.name : "-"
+                / td= chore_record ? chore_record.chore.name : "-"
+                td
+                  - if Point.events.slice(:chore_record, :chore_cancel).values.include?(point.event) && chore_record
+                    = link_to chore_record.chore do
+                      = fa_icon 'calendar-o', class: 'icon_chores_list'
+                      span.ml-2= chore_record.chore.name
+                  - if point.event == Point.events[:reward_exchange]
+                    = "（プレゼント）"
                 td.text-right
                   = (point.point.positive? ? "+": "") + "#{point.point.to_s(:delimited)} pt"
                 td.center.small
                   = l(point.created_at, format: :long)
                 td.center
-                  - if point.event == Point.events[:chore_record] && rcd
-                    = link_to rcd.chore do
-                      = fa_icon 'calendar-o', class: 'icon_chores_list'
 

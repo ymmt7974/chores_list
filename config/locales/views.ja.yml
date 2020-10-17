@@ -1,4 +1,5 @@
 ja:
+  title: "お手伝いリスト"
   chores:
     new:
       title: "お手伝い情報 新規登録"
@@ -6,8 +7,9 @@ ja:
       title: "お手伝い情報 編集"
     show:
       title: "お手伝い情報"
+      operater: "担当者"
     index:
-      title: "お手伝いリスト"
+      title: "お手伝いリスト管理"
   chore_records:
     new:
       title: "お手伝い記録 新規登録"
@@ -24,9 +26,14 @@ ja:
       title: "プロフィール切替"
   static_pages:
     home:
-      title: "お手伝いリスト"
+      chores:
+        status: "状況"
+        operater: "担当者"
     about:
       title: "お手伝いリストについて"
     help:
       title: "ヘルプ"
+      
+  status:
+    complete: "完了"
     

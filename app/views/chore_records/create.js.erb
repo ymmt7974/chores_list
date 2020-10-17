@@ -1,7 +1,13 @@
-$("textarea").val();
-$("input").val();
+var now = new Date();
+var now_s = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
+$("#choreModal_date-<%= @chore.id %>").val(now_s);
+$("#choreModal_comment-<%= @chore.id %>").val("");
+
 $("#choreModal-<%= @chore.id %>").modal('hide');
-$("#chore_status-<%= @chore.id %>").text('<%= @chore.today_status %>');
+
+$("#chore_status-<%= @chore.id %>").text('<%= @chore.today_record_status %>');
+$("#chore_operator-<%= @chore.id %>").text('<%= @chore.today_record_operator %>');
+
 var min = parseInt( $("#profile_point").text().replace(',','') );
 $({count: min}).animate({count: <%= current_profile.point %>}, {
 	duration: 1000,

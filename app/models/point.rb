@@ -12,6 +12,6 @@ class Point < ApplicationRecord
   enum events: {
     chore_record: 1,
     chore_cancel: 2,
-    gift_exchange: 3
+    reward_exchange: 3
   }
 end

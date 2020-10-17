@@ -43,7 +43,11 @@ class Chore < ApplicationRecord
   }
 
   # 今日のステータスを取得
-  def today_status
-    today_record = self.chore_records.exists?(actual_date: Time.current) ? "完了" : ""
+  def today_record_status
+    self.chore_records.today.exists? ? I18n.t("status.complete") : ""
+  end
+  # 今日の作業者を取得
+  def today_record_operator
+    self.chore_records.today.joins(:profile).pluck(:name).join(",")
   end
 end

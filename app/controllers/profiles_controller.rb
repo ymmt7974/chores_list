@@ -15,12 +15,16 @@ class ProfilesController < ApplicationController
   end
 
   def select
+    # 挨拶
+    unless current_profile&.id == @profile.id
+      flash[:notice] = greeting @profile.name
+    end
+
     # 現在のプロフィールを破棄
     forget_profile unless selected_profile?
     # 選択されたプロフィール情報をセッションに保存
     remember_profile(@profile)
 
-    flash[:notice] = greeting @profile.name
     redirect_to root_path
   end
 

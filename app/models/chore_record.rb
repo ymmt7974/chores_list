@@ -10,5 +10,7 @@ class ChoreRecord < ApplicationRecord
   # -- [scope] --
   # 最新を取得
   scope :recent, -> { order(actual_date: :desc)}
+  # 今日の記録を取得
+  scope :today, -> { where(actual_date: Time.current)}
 
 end
