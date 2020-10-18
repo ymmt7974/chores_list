@@ -197,5 +197,6 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
+      date_short: "%Y/%m/%d"
       ymd: "%Y年%m月%d日(%a)"
     pm: 午後

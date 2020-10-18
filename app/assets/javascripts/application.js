@@ -22,10 +22,16 @@
 //= jquery.jpostal.js
 //= require_tree .
 
-// flashメッセージスライドアップ
-$(function(){
+$(document).on('turbolinks:load', function() {
+  // flashメッセージスライドアップ
   setTimeout("$('.flash').slideUp('slow')", 2000);
+
+  // マイナス値：赤
+  $(".td-point:contains('-')").addClass('text-danger');
+  $("#profile_point:contains('-')").addClass('text-danger');
 });
+
+
 
 // 正規表現でセパレート
 function separate(num){

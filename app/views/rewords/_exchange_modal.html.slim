@@ -26,14 +26,9 @@
                 td.text-right
                   - after_point = current_profile.point - reword.cost_point
                   = "#{current_profile.point.to_s(:delimited)} pt　→　"
-                  - if after_point < 0
-                    span.text-danger= "#{after_point.to_s(:delimited)} pt"
-                  - else
-                    span= "#{after_point.to_s(:delimited)} pt"
-                  
-          - if after_point < 0
-            p.text-right.text-danger
-              | ポイントが不足しています
+                  = content_tag :span, "#{after_point.to_s(:delimited)} pt", 
+                  class: (after_point < 0 ? "text-danger" : "")
+          = content_tag :div, "ポイントが不足しています", class: "text-right text-danger" if after_point < 0
         .modal-footer
           button.btn.btn-secondary[type="button" data-dismiss="modal"]
             | 閉じる

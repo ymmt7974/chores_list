@@ -7,8 +7,7 @@
     
     p.card-text.my-4
       | 所持ポイント：
-      span#profile_point= profile.point.to_s(:delimited)
-      |  pt
+      span#profile_point= "#{profile.point.to_s(:delimited)} pt"
 
     .mb-2
   .card-footer

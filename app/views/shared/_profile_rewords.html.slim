@@ -1,0 +1,14 @@
+.card
+  .card-header ポイント交換品
+  .card-body style="overflow-x: hidden; overflow-y: scroll; height: 400px;"
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th style="width: 60%;"= Reword.human_attribute_name(:name)
+          th style="width: 40%;"= "交換日"
+      tbody
+        - point_rewords.each do |point|
+          tr
+            td= point.reword.name
+            td.center.small
+              = l(point.created_at, format: :date_short)

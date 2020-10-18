@@ -4,6 +4,10 @@ h1= t('.title')
 .row
   .col-md-4
     = render 'shared/profile', profile: @profile
+
+    .mb-3
+    = render 'shared/profile_rewords', point_rewords: @profile.points.reward.recent
+
   .mb-3
   .col-md-8
     .card
@@ -29,7 +33,7 @@ h1= t('.title')
       
     .mb-3
     .card
-      .card-header ポイント履歴
+      .card-header 履歴
       .card-body style="overflow-x: hidden; overflow-y: scroll; height: 400px;"
         table.table.table-hover
           thead.thead-default
@@ -49,7 +53,7 @@ h1= t('.title')
                       span.ml-2= point.chore&.name
                   - if point.event == Point.events[:reward_exchange]
                     = point.reword.name
-                td.text-right
+                td.text-right.td-point
                   = (point.point.positive? ? "+": "") + "#{point.point.to_s(:delimited)} pt"
                 td.center.small
                   = l(point.created_at, format: :long)

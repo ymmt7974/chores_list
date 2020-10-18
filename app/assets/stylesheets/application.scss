@@ -247,6 +247,15 @@ input {
   }
 }
 
+.fa-trash {
+  color: #ff0000;
+  &:hover {
+    color: #910000;
+  }
+  &:active {
+    color: #5e0000;
+  }
+}
 
 
 /* ===DEV=== */

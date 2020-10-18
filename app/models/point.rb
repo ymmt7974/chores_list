@@ -9,6 +9,8 @@ class Point < ApplicationRecord
   # -- [scope] --
   # 最新を取得
   scope :recent, -> { order(created_at: :desc)}
+  # ポイント交換したものを取得
+  scope :reward, -> { where(event: 3)}
   
   # -- [enum] --
   enum events: {

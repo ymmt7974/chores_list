@@ -5,6 +5,8 @@ h1= t('.title')
 .row
   .col-md-4
     = render 'shared/profile', profile: current_profile
+    .mt-3.profile_rewords
+      = render 'shared/profile_rewords', point_rewords: current_profile.points.reward.recent
   .mb-3
   .col-md-8
     .card
@@ -29,13 +31,13 @@ h1= t('.title')
                 td.text-right
                   = "#{reword.cost_point.to_s(:delimited)} pt"
                 td.text-center
-                  = link_to "交換", '#', data: {toggle:"modal",target:"#exchangeModal-#{reword.id}"}, class: 'btn btn-info'
+                  = link_to "交換", '#', data: {toggle:"modal",target:"#exchangeModal-#{reword.id}"}, class: 'btn btn-info mr-2'
                   - if current_profile.admin?
                     = link_to edit_reword_path(reword), id: "edit_#{reword.id}" do
                       = fa_icon 'edit', class: 'icon_list mr-2'
                     = link_to reword, method: :delete, remote: true, id: "delete_#{reword.id}",
                     data: { confirm: "「#{reword.name}」を削除します。よろしいですか？" }, class: "delete" do
-                      = fa_icon 'trash', class: 'icon_list mr-2'
+                      = fa_icon 'trash', class: 'icon_list'
                   
         div.exchangeModal
           = render 'exchange_modal', rewords: @rewords

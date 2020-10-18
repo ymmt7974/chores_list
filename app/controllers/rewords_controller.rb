@@ -4,7 +4,7 @@ class RewordsController < ApplicationController
   before_action :set_reword, only: [:edit, :update, :destroy, :exchange]
 
   def index
-    @rewords = current_user.rewords
+    @rewords = current_user.rewords.maxcost
   end
 
   def new
@@ -51,7 +51,7 @@ class RewordsController < ApplicationController
                         event: Point.events[:reward_exchange],
                         reword: @reword)
     if @point.save
-      @rewords = current_user.rewords
+      @rewords = current_user.rewords.maxcost
       respond_to do |format|
         format.html { redirect_to rewords_path, flash: {success: "「#{@reword.name}」とポイント交換しました。"} }
         format.js

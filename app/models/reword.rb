@@ -8,4 +8,7 @@ class Reword < ApplicationRecord
   validates :description, length: { maximum: 255 }
   validates :cost_point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   
+  # -- [scope] --
+  # 最新を取得
+  scope :maxcost, -> { order(cost_point: :desc)}
 end

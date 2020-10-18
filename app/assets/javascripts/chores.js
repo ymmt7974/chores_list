@@ -29,6 +29,7 @@ $(document).on('turbolinks:load', function() {
   $('select[id="chore_date_type"]').change();
 
 });
+
 function date_type_all_hide() {
   $("#fg_chore_date").hide();
   $("#fg_chore_start_date").hide();
