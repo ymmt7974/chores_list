@@ -1,6 +1,8 @@
 doctype html
-html
+html lang="ja"
   head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
     title
       = full_title(yield(:title))
     = csrf_meta_tags
@@ -8,27 +10,35 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.app-title.navbar.fixed-top.navbar-expand-md.navbar-light style="background-color: #F8E198;"
+    nav.app-title.navbar.fixed-top.navbar-expand-sm.navbar-light style="background-color: #F8E198;"
       .navbar-brand= link_to "ChoresList", root_path, id: "logo"
-      ul.navbar-nav.ml-auto
-        li.nav-item= link_to 'Home', root_path, class: 'nav-link'
-        li.nav-item= link_to 'About', about_path, class: 'nav-link'
-        / li.nav-item= link_to 'Help', help_path, class: 'nav-link'
-        - if user_signed_in?
-          li.nav-item= link_to 'お手伝いリスト管理', chores_path, class: 'nav-link'
-          li.nav-item= link_to 'ポイント交換所', rewords_path, class: 'nav-link'
-          li.nav-item= link_to 'プロフィール切替', profiles_path, class: 'nav-link'
-          - if current_profile
-            li.nav-item= link_to current_profile.name, current_profile, class: 'nav-link'
-          li.nav-item= link_to 'アカウント管理', edit_user_registration_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link '
-        - else
-          li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
-          li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link btn btn-info text-white'
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="ナビゲーションの切替"
+			  span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarMenu
+        ul.navbar-nav.ml-auto
+          li.nav-item= link_to 'Home', root_path, class: 'nav-link'
+          li.nav-item= link_to 'About', about_path, class: 'nav-link'
+          / li.nav-item= link_to 'Help', help_path, class: 'nav-link'
+          - if user_signed_in?
+            - if selected_profile?
+              li.nav-item.active.dropdown
+                button.btn.dropdown-toggle type="button" data-toggle="dropdown"= current_profile.name
+                .dropdown-menu.dropdown-menu-right
+                  = link_to 'プロフィール', current_profile, class: 'dropdown-item'
+                  = link_to 'お手伝い管理', chores_path, class: 'dropdown-item'
+                  = link_to 'ポイント交換所', rewords_path, class: 'dropdown-item'
+                  .dropdown-divider
+                  = link_to 'プロフィール切替', profiles_path, class: 'dropdown-item'
+                  .dropdown-divider
+                  = link_to 'アカウント管理', edit_user_registration_path, class: 'dropdown-item'
+                  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+          - else
+            li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
+            li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link btn btn-info text-white'
 
     .container
       - flash.each do |type, msg|
-         - if %w(alert success danger warning info notice).include?(type)
+        - if %w(alert success danger warning info notice).include?(type)
           = content_tag :div, msg, class: "flash alert alert-#{type}"
       = yield
       = debug(params) if Rails.env.development? 

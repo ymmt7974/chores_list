@@ -9,7 +9,7 @@ ja:
       title: "お手伝い情報"
       operater: "担当者"
     index:
-      title: "お手伝いリスト管理"
+      title: "お手伝い管理"
   chore_records:
     new:
       title: "お手伝い記録 新規登録"

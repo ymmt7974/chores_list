@@ -6,7 +6,7 @@ h1= t('title')
     .card
       .card-header 天気予報
       .card-body
-        p.small.text-muted （未実装）
+        = render 'weather', user: current_user
   .col-md-8
     .card
       .card-header 今日のお手伝いリスト

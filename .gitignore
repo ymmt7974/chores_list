@@ -27,3 +27,6 @@
 /config/master.key
 
 /environments/db.env
+
+# 環境変数設定ファイル
+/.env
