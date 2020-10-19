@@ -3,30 +3,9 @@ h1= t('.title')
 
 .card
   .card-header お手伝いリスト
-  .card-body.card-body_mainlist
-    table.table.table-hover
-      thead.thead-default
-        tr
-          th style="width: 30%;"= Chore.human_attribute_name(:name)
-          th style="width: 30%;"= Chore.human_attribute_name(:date_type)
-          th style="width: 15%;"= Chore.human_attribute_name(:point)
-          th style="width: 25%;"
-      tbody
-        - @chores.each do |chore|
-          tr id="chore-#{chore.id}"
-            td= link_to chore.name, chore
-            td= format_date_type chore
-            td.text-right
-              = "#{chore.point.to_s(:delimited)} pt"
-            td.text-right
-              = link_to new_chore_chore_record_path(chore_id: chore.id), id: "new_#{chore.id}" do
-                = fa_icon 'calendar-plus-o', class: 'icon_list mr-3'
-              - if current_profile.admin?
-                = link_to edit_chore_path(chore), id: "edit_#{chore.id}" do
-                  = fa_icon 'edit', class: 'icon_list mr-3'
-                = link_to chore, method: :delete, remote: true, id: "delete_#{chore.id}",
-                data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: "delete" do
-                  = fa_icon 'trash', class: 'icon_list'
+  .card-body
+    .chores
+      = render 'chores', chores: @chores
   .card-footer
     - if current_profile.admin?
       = link_to '新規登録', new_chore_path, class: 'btn btn-info'

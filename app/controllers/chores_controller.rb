@@ -4,7 +4,7 @@ class ChoresController < ApplicationController
   before_action :set_chore, only: [:show, :edit, :update, :destroy]
   
   def index
-    @chores = current_user.chores.recent
+    @chores = current_user.chores.recent.page(params[:page]).per(10)
   end
 
   def show
@@ -38,7 +38,7 @@ class ChoresController < ApplicationController
 
   def destroy
     @chore.destroy
-    # head :no_content
+    @chores = current_user.chores.recent.page(params[:page]).per(10)
     respond_to do |format|
       format.html { redirect_to chores_path }
       format.js

@@ -1,5 +1,4 @@
-document.querySelector('#chore-<%= @chore.id%>').style.display = 'none';
-
+$(".chores").html("<%= escape_javascript(render 'chores', chores: @chores) %>");
 <%# var msg = document.createElement('p'); %>
 <%# msg.innerText = '削除しました。'; %>
 <%# document.querySelector('table').insertAdjacentElement('beforebegin', msg) %>

@@ -13,6 +13,6 @@ $({count: min}).animate({count: <%= current_profile.point %>}, {
 	duration: 1000,
 	easing: 'linear',
 	progress: function() { 
-	    $('#profile_point').html(separate(Math.ceil(this.count))); 
+	    $('#profile_point').html(separate(Math.ceil(this.count)) + " pt"); 
 	}
 });
