@@ -4,6 +4,7 @@ services:
     build:
       context: .
     env_file:
+      - .env
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:

@@ -28,8 +28,6 @@ gem "font-awesome-rails"
 
 gem 'kaminari'
 
-gem 'dotenv-rails'
-
 # Devise
 gem 'devise'
 gem 'devise-bootstrap-views'
