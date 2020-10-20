@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 gem 'rails', '~> 5.2.4'
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
 gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -35,6 +34,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 group :development, :test do
+  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Call 'binding.pry'
@@ -57,4 +57,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'pg', '0.20.0'
 end
