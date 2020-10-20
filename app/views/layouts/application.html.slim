@@ -31,7 +31,7 @@ html lang="ja"
                   = link_to 'プロフィール切替', profiles_path, class: 'dropdown-item'
                   .dropdown-divider
                   = link_to 'アカウント管理', edit_user_registration_path, class: 'dropdown-item'
-                  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+                  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item text-danger'
           - else
             li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
             li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link btn btn-info text-white'

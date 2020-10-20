@@ -19,14 +19,14 @@ h1= t('.title')
               td お手伝いを開始した日
               td.text-right= l(@profile.created_at, format: :ymd)
             tr
-              td お手伝いをした数
+              td お手伝いをした回数
               td.text-right= "#{@profile.chores_count.to_s(:delimited)} 回"
             tr
               td 累計獲得ポイント数
               td.text-right= "#{@profile.total_point.to_s(:delimited)} pt"
             tr
-              td ポイント交換した商品数
-              td.text-right= "#{@profile.rewords_count.to_s(:delimited)} 回"
+              td ポイント交換した数
+              td.text-right= "#{@profile.rewords_count.to_s(:delimited)} 個"
 
         / = link_to "#" do
         /   = fa_icon 'plus-circle 2x'

@@ -3,14 +3,14 @@
   .modal-dialog[role="document"]
     .modal-content
       .modal-header
-        h5.modal-title id="choreModalLabel-#{chore.id}"
-          = "【お手伝い】#{chore.name}"
+        h5.modal-title id="choreModalLabel-#{chore.id}" 【お手伝い記録】
         button.close[type="button" data-dismiss="modal" aria-label="Close"]
           span[aria-hidden="true"]
             | ×
       
       = form_with model: chore_record, remote: true, url: chore_records_path do |f| 
         .modal-body
+          h1.my-3.center= "#{chore.name}"
           .form-group
             = f.label :actual_date
             = f.date_field :actual_date, value: Time.current.strftime("%Y-%m-%d"), required: true \

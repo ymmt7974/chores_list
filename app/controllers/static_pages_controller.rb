@@ -15,6 +15,12 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def new_guest
+    user = User.find_by(email: 'guest@example.com')
+    sign_in user
+    redirect_to profiles_url, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   private
 
   # お手伝いリストを取得する
