@@ -88,8 +88,8 @@ class StaticPagesController < ApplicationController
       data = {
         :dt_txt => I18n.l(DateTime.parse(i['dt_txt']), format: :ymd_short),
         :icon => i['weather'][0]['icon'].gsub("n","d"),
-        :temp_max => i["main"]["temp_max"].round(1),
-        :temp_min => i["main"]["temp_min"].round(1)
+        :temp_max => i["main"]["temp_max"].floor(1),
+        :temp_min => i["main"]["temp_min"].floor(1)
       }
       @weather_list << data
     end
