@@ -33,8 +33,8 @@ class StaticPagesController < ApplicationController
             date_type = 0
         OR (date_type = 1 AND date = :date)
         OR (date_type = 2 AND (start_date <= :date AND end_date >= :date))
-        OR (date_type = 3 AND date = :date_wday)
-        OR (date_type = 4 AND date = :date_mday)
+        OR (date_type = 3 AND wday = :date_wday)
+        OR (date_type = 4 AND mday = :date_mday)
       )
     EOF
     keywords =  { user_id: user_id, 
