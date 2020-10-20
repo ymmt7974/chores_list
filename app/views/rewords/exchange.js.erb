@@ -1,6 +1,3 @@
-$("#exchangeModal-<%= @reword.id %>").modal('hide');
-$('div.modal-backdrop').remove();
-
 var min = parseInt( $("#profile_point").text().replace(',','') );
 $({count: min}).animate({count: <%= current_profile.point %>}, {
 	duration: 1000,
@@ -12,3 +9,6 @@ $({count: min}).animate({count: <%= current_profile.point %>}, {
 $(".profile_rewords").html("<%= escape_javascript(render 'shared/profile_rewords', point_rewords: current_profile.points.reward.recent) %>");
 $(".exchangeModal").html("<%= escape_javascript(render 'exchange_modal', rewords: @rewords) %>");
 
+$("#exchangeModal-<%= @reword.id %>").modal('hide');
+$('div.modal-backdrop').remove();
+$('body').removeClass('modal-open')

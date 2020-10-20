@@ -68,28 +68,36 @@ h2 {
 //   line-height: 1.7em;
 // }
 
-table {
-  border-collapse: collapse;
-  margin: 0 auto;
-  padding: 0;
-  width: 850px;
-  table-layout: fixed;
-  margin-top: 5px;
-  margin-bottom: 35px;
-}
+// @include media-breakpoint-up(sm) {
+// 極小デバイス（縦向きモバイル, 576px 未満）
+@media (max-width: 575.98px) {
+  table {
+    font-size: 0.6rem;
+  }
+ }
 
-thead {
-  display: table-header-group;
-  vertical-align: middle;
-  text-align: center;
-  border-color: inherit;
-}
+// table {
+//   border-collapse: collapse;
+//   margin: 0 auto;
+//   padding: 0;
+//   width: 850px;
+//   table-layout: fixed;
+//   margin-top: 5px;
+//   margin-bottom: 35px;
+// }
 
-tbody {
-  display: table-row-group;
-  vertical-align: middle;
-  border-color: inherit;
-}
+// thead {
+//   display: table-header-group;
+//   vertical-align: middle;
+//   text-align: center;
+//   border-color: inherit;
+// }
+
+// tbody {
+//   display: table-row-group;
+//   vertical-align: middle;
+//   border-color: inherit;
+// }
 
 
 

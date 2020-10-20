@@ -43,8 +43,8 @@ h1= t('.title')
             tr
               th style="width: 20%;"= t(".operater")
               th style="width: 30%;"= ChoreRecord.human_attribute_name(:actual_date)
-              th style="width: 35%;"= ChoreRecord.human_attribute_name(:comment)
-              th style="width: 15%;"
+              th style="width: 30%;"= ChoreRecord.human_attribute_name(:comment)
+              th style="width: 20%;"
           tbody
             - @chore.chore_records.recent.each do |record|
               tr
@@ -52,9 +52,9 @@ h1= t('.title')
                 td.center.small
                   = l(record.actual_date, format: :long)
                 td.small= raw Rinku.auto_link(simple_format(h(record.comment), {}, sanitize: false, wrapper_tag: "div"))
-                td
+                td.text-center
                   = link_to edit_chore_chore_record_path(@chore,record) do
-                    = fa_icon 'edit', class: 'icon_list mr-2'
+                    = fa_icon 'edit', class: 'icon_list mr-1'
                   = link_to record, method: :delete, \
                   data: { confirm: "#{l(record.actual_date, format: :long)}の記録を削除します。よろしいですか？" } do
                     = fa_icon 'trash', class: 'icon_list'

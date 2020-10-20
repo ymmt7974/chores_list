@@ -1,11 +1,11 @@
 table.table.table-hover
   thead.thead-default
     tr
-      th style="width: 35%;"= Chore.human_attribute_name(:name)
-      th style="width: 25%;"= Chore.human_attribute_name(:point)
-      th style="width: 10%;"= "状況"
-      th style="width: 20%;"= "担当者"
-      th style="width: 10%;"
+      th scope="col" style="width: 35%;"= Chore.human_attribute_name(:name)
+      th scope="col" style="width: 25%;"= Chore.human_attribute_name(:point)
+      th scope="col" style="width: 10%;"= "状況"
+      th scope="col" style="width: 25%;"= "担当者"
+      th scope="col" style="width: 5%;"
   tbody
     - chores.each do |chore|
       tr

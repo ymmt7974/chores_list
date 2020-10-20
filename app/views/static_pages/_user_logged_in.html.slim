@@ -2,8 +2,8 @@ h1= t('title')
 .row
   .col-md-4
     = render 'shared/profile', profile: current_profile
-    .mb-3
-    .card
+    
+    .card.my-3
       .card-header 天気予報
       .card-body
         = render 'weather', user: current_user

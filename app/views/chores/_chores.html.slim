@@ -3,8 +3,8 @@ table.table.table-hover
     tr
       th style="width: 30%;"= Chore.human_attribute_name(:name)
       th style="width: 30%;"= Chore.human_attribute_name(:date_type)
-      th style="width: 15%;"= Chore.human_attribute_name(:point)
-      th style="width: 25%;"
+      th style="width: 20%;"= Chore.human_attribute_name(:point)
+      th style="width: 20%;"
   tbody
     - chores.each do |chore|
       tr id="chore-#{chore.id}"
@@ -14,13 +14,13 @@ table.table.table-hover
           = "#{chore.point.to_s(:delimited)} pt"
         td.text-right
           = link_to new_chore_chore_record_path(chore_id: chore.id), id: "new_#{chore.id}" do
-            = fa_icon 'calendar-plus-o', class: 'icon_list mr-3'
+            = fa_icon 'calendar-plus-o', class: 'icon_list mx-2'
           - if current_profile.admin?
             = link_to edit_chore_path(chore), id: "edit_#{chore.id}" do
-              = fa_icon 'edit', class: 'icon_list mr-3'
+              = fa_icon 'edit', class: 'icon_list mx-2'
             = link_to chore, method: :delete, remote: true, id: "delete_#{chore.id}",
             data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: "delete" do
-              = fa_icon 'trash', class: 'icon_list'
+              = fa_icon 'trash', class: 'icon_list mx-2'
 .mt-3
   = paginate chores
   .mb-t.small.text-muted

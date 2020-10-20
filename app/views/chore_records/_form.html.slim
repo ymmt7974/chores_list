@@ -1,15 +1,20 @@
 = form_with model: @chore do |f|
-  .form-group.row
-    = f.label :name , class: "col-sm-3 col-form-label"
-    .col-sm-9
+  .row
+    .col-5.col-md-3
+      = f.label :name , class: "col-form-label"
+    .col-7.col-md-9
       = f.text_field :name, value: @chore.name, readonly: true, class: "form-control-plaintext"
-    = f.label :point , class: "col-sm-3 col-form-label"
-    .col-sm-9
+  .row
+    .col-5.col-md-3
+      = f.label :point , class: "col-form-label"
+    .col-7.col-md-9
       .form-inline
         = f.number_field :point, value: @chore.point, readonly: true, class: "form-control-plaintext"
+  .row
     - unless @chore.description.blank?
-      = f.label :description , class: "col-sm-3 col-form-label"
-      .col-sm-9
+      .col-5.col-md-3
+        = f.label :description , class: "col-form-label"
+      .col-7.col-md-9
         = f.text_area :description, rows: 3, value: @chore.description, readonly: true, class: "form-control-plaintext"
 
 hr.my-2
