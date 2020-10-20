@@ -1,83 +1,20 @@
-input#user_postal_code type="hidden" value="#{user.postal_code}"
-input#user_address type="hidden"
-div
-  p#user_address_disp
-#weather
+/ input#user_postal_code type="hidden" value="#{user.postal_code}"
+/ input#user_address type="hidden"
+.address
+  p= @address
+  - if @message
+    p.small.text-muted-= "#{@message}"
 
-/ 画像ファイルパスを取得
-- imgs = {}
-- Dir.chdir("#{Rails.root}/app/assets/images/") do
-  - imgs = Dir["**/*"].inject({}) do |h,f|
-    - h.merge!(f => image_path(f)) unless Dir.exist? f
-    - h
+- if @weather_list
+  .weather
+    - @weather_list.each do |i|
+      .row.weather-report.mb-2.border-bottom
+        .col-md-7
+          = image_tag "w/#{i[:icon]}.png"
+          span.weather-date= i[:dt_txt]
+        .col-md-5
+          .weather-temp-max= "最高：#{i[:temp_max]}℃"
+          .weather-temp-min= "最低：#{i[:temp_min]}℃"
 
-javascript:
-
-  // jsでimage_pathを使用できるようにする
-  window.image_path = function(name){
-    return #{raw imgs.to_json}[name];
-  }
-  
-  $(function () {
-    var API_KEY = "#{ENV['OPEN_WEATHER_MAP_API']}"; // APIキー(環境変数)
-    var zip_code = "#{user.postal_code}"; // 該当ユーザーの郵便番号を代入
-    if (zip_code == ""){
-      $('#weather').html('<div class="small text-muted mb-2">（郵便番号を登録してください）</div>');
-      return;
-    }
-    
-    zip_code = zip_code.slice(0, 3) + '-' + zip_code.slice(3,zip_code.length)
-    // APIを読み込み変数に代入
-    var url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zip_code + ',jp&units=metric&APPID=' + API_KEY;
-    
-
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        type: 'GET',
-      })
-      .done(function (data) {
-        var insertHTML = '';
-        var cityName = data.city.name;
-        $('#city-name').html(cityName);
-
-        // デフォルトでは3時間ごとの天気を取得するため、
-        // 8の倍数でデータを取得することにより、24時間ごとの天気を取得する
-        // ３日分の天気予報を取得
-        for (var i = 0; i < 24; i = i + 8) {
-          insertHTML += buildHTML(data, i);
-        }
-        $('#weather').html(insertHTML);
-        
-      })
-      .fail(function (data) {
-        //alert('天気予報取得に失敗しました');
-        $('#weather').html('<div class="small text-muted mb-2">（郵便番号を登録してください）</div>');
-      });
-      
-  });
-
-  // 日本語化
-  function buildHTML(data, i) {
-    var Week = new Array('(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)');
-    // ※Safariだと日付に"-"があると作成できない
-    var date = new Date(data.list[i].dt_txt.replace(/-/g,"/"));
-    date.setHours(date.getHours() + 9);
-    var month = date.getMonth() + 1;
-    var day = month + '/' + date.getDate() + Week[date.getDay()];
-    var icon = data.list[i].weather[0].icon;
-    
-    //alert(image_path("w/" + icon + ".png"));
-    var html =
-      '<div class="weather-report row mb-1 border-bottom">' +
-        '<div class="col-md-7">' +
-          '<img src="' + image_path("w/" + icon + ".png") + '">' +
-          '<span class="weather-date">' + day + "</span>"+
-        '</div>' +
-        '<div class="col-md-5">' +
-          '<div class="weather-temp-max">' + '最高：' + Math.round(data.list[i].main.temp_max) + "℃</div>" +
-          '<span class="weather-temp-min">' + '最低：' + Math.floor(data.list[i].main.temp_min) + "℃</span>" +
-        '</div>' +
-      '</div>';
-    return html
-  }
+/ p= @uri_s
+/ p= @result

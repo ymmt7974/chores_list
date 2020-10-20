@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  require 'net/http'
   def home
     if user_signed_in?
       # プロフィール選択状態の確認
@@ -6,6 +7,10 @@ class StaticPagesController < ApplicationController
       
       # お手伝いリスト取得
       @chores = search_chores_list(current_user.id, Time.current)
+      if current_user.postal_code
+        get_address     # 住所情報取得
+        get_weather     # 天気予報取得
+      end
     end
   end
 
@@ -44,5 +49,49 @@ class StaticPagesController < ApplicationController
 
     Chore.find_by_sql([query, keywords])
 
+  end
+
+  # 住所情報取得
+  def get_address
+    # hash形式でパラメタ文字列を指定し、URL形式にエンコード
+    params = URI.encode_www_form({zipcode: current_user.postal_code})
+    # URIを解析し、hostやportをバラバラに取得できるようにする
+    uri = URI.parse("http://zipcloud.ibsnet.co.jp/api/search?#{params}")
+
+    # 新しくHTTPセッションを開始し、結果をresponseへ格納
+    response = Net::HTTP.get_response(uri)
+    result = JSON.parse(response.body)
+    if result["results"]
+      @address = result["results"][0]["address1"] + 
+                  result["results"][0]["address2"] + 
+                  result["results"][0]["address3"]
+    end
+  end
+
+  def get_weather
+    # hash形式でパラメタ文字列を指定し、URL形式にエンコード
+    postal_code = current_user.postal_code.insert(3, '-')
+    api_key = ENV['OPEN_WEATHER_MAP_API']
+    params = URI.encode_www_form({APPID: api_key, zip: postal_code})
+      
+    # URIを解析し、hostやportをバラバラに取得できるようにする
+    uri = URI.parse("https://api.openweathermap.org/data/2.5/forecast?units=metric&#{params},jp")
+
+    # 新しくHTTPセッションを開始し、結果をresponseへ格納
+    response = Net::HTTP.get_response(uri)
+    result = JSON.parse(response.body)
+    @weather_list = []
+    # 3時間ごとの天気予報が取得される
+    # ３日分を表示
+    for cnt in 0..2 do
+      i = result["list"][cnt * 8]
+      data = {
+        :dt_txt => I18n.l(DateTime.parse(i['dt_txt']), format: :ymd_short),
+        :icon => i['weather'][0]['icon'].gsub("n","d"),
+        :temp_max => i["main"]["temp_max"].round(1),
+        :temp_min => i["main"]["temp_min"].round(1)
+      }
+      @weather_list << data
+    end
   end
 end
