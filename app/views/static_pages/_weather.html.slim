@@ -9,10 +9,10 @@
   .weather
     - @weather_list.each do |i|
       .row.weather-report.mb-2.border-bottom
-        .col-md-7
+        .col-7.col-md-7
           = image_tag "w/#{i[:icon]}.png"
           span.weather-date= i[:dt_txt]
-        .col-md-5
+        .col-5.col-md-5
           .weather-temp-max= "最高：#{i[:temp_max]}℃"
           .weather-temp-min= "最低：#{i[:temp_min]}℃"
 

@@ -21,7 +21,7 @@ table.table.table-hover
             = link_to chore, method: :delete, remote: true, id: "delete_#{chore.id}",
             data: { confirm: "「#{chore.name}」を削除します。よろしいですか？" }, class: "delete" do
               = fa_icon 'trash', class: 'icon_list mx-2'
-.mt-3
+.mt-3.mx-3
   = paginate chores
   .mb-t.small.text-muted
     = page_entries_info chores

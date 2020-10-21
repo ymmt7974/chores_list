@@ -30,26 +30,6 @@ $(document).on('turbolinks:load', function() {
   $(".td-point:contains('-')").addClass('text-danger');
   $("#profile_point:contains('-')").addClass('text-danger');
 
-
-  // 住所情報自動表示
-	$('#user_postal_code').jpostal({
-		postcode : [
-			'#user_postal_code'
-		],
-    // 入力項目フォーマット
-    //   %3  都道府県
-    //   %4  市区町村
-    //   %5  町域
-    //   %6  大口事業所の番地
-    //   %7  大口事業所の名称
-		address : {
-			'#user_address' : '%3%4%5'
-		}
-  });
-  
-  $("#user_postal_code").keyup();
-  // 表示用
-  $('#user_address_disp').html($('#user_address').val());
 });
 
 // 正規表現でセパレート

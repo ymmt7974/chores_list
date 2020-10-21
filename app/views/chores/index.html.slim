@@ -3,8 +3,7 @@ h1= t('.title')
 
 .card
   .card-header お手伝いリスト
-  .card-body
-    .chores
+  .card-body.chores.pt-0.px-2
       = render 'chores', chores: @chores
   .card-footer
     - if current_profile.admin?

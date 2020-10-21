@@ -10,8 +10,7 @@ h1= t('title')
   .col-md-8
     .card
       .card-header 今日のお手伝いリスト
-      .card-body
-        .chores-list
-          = render 'chores', chores: @chores
+      .card-body.chores-list.pt-0.px-2
+        = render 'chores', chores: @chores
         
 
