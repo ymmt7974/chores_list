@@ -1,10 +1,7 @@
-/ input#user_postal_code type="hidden" value="#{user.postal_code}"
-/ input#user_address type="hidden"
+/ 住所情報：郵便番号API（jQueryで取得）
 .address
-  p= @address
-  - if @message
-    p.small.text-muted-= "#{@message}"
 
+/ 天気予報：OpenWeatherMapAPI（Controllerで取得）
 - if @weather_list
   .weather
     - @weather_list.each do |i|
@@ -16,5 +13,41 @@
           .weather-temp-max= "最高：#{i[:temp_max]}℃"
           .weather-temp-min= "最低：#{i[:temp_min]}℃"
 
-/ p= @uri_s
-/ p= @result
+javascript:
+
+javascript:
+  // HTML読み込み完了時に実行
+  window.onload = function () {
+    displayAddress();
+  };
+
+  // 住所情報
+  function displayAddress() {
+    var zipcode = "#{current_user.postal_code.delete('-')}"
+    if (!zipcode){
+      return;
+    }
+    var url = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + zipcode;
+    $.ajax({
+      url: url,
+      //timeout: 10000,
+      dataType: 'jsonp',
+      type: 'GET'
+    })
+    .done(function (data) {
+      if (data.results) {
+        setAddress(data.results[0]);
+      } else {
+          alert('該当するデータが見つかりませんでした。');
+      }
+    })
+    .fail(function (data) {
+      $(".address").html('<p class="small text-muted">住所情報取得に失敗しました</p>');
+    });
+  };
+  function setAddress(data) {
+      $(".address").html("<p>" + data.address1　+
+                          data.address2　+
+                          data.address3　+
+                         "</p>");
+  }

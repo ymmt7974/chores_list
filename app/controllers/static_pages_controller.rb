@@ -8,7 +8,6 @@ class StaticPagesController < ApplicationController
       # お手伝いリスト取得
       @chores = search_chores_list(current_user.id, Time.current)
       if current_user.postal_code
-        get_address     # 住所情報取得
         get_weather     # 天気予報取得
       end
     end
@@ -51,21 +50,7 @@ class StaticPagesController < ApplicationController
 
   end
 
-  # 住所情報取得
-  def get_address
-    params = URI.encode_www_form({zipcode: current_user.postal_code})
-    uri = URI.parse("http://zipcloud.ibsnet.co.jp/api/search?#{params}")
-
-    # 結果をresponseへ格納
-    response = Net::HTTP.get_response(uri)
-    result = JSON.parse(response.body)
-    if result["results"]
-      @address = result["results"][0]["address1"] + 
-                  result["results"][0]["address2"] + 
-                  result["results"][0]["address3"]
-    end
-  end
-
+  # 天気予報
   def get_weather
     postal_code = current_user.postal_code.insert(3, '-')
     api_key = ENV['OPEN_WEATHER_MAP_API']
@@ -76,18 +61,29 @@ class StaticPagesController < ApplicationController
     # 結果をresponseへ格納
     response = Net::HTTP.get_response(uri)
     result = JSON.parse(response.body)
+
+    # ６日間３時間ごとの天気予報が取得される
+    # 取得した天気予報を１日単位で集計
     @weather_list = []
-    # 3時間ごとの天気予報が取得される
-    # ３日分を表示
-    for cnt in 0..2 do
-      i = result["list"][cnt * 8]
-      data = {
+    list = []
+    result["list"].each do |i|
+      list << {
         :dt_txt => I18n.l(DateTime.parse(i['dt_txt']), format: :ymd_short),
         :icon => i['weather'][0]['icon'].gsub("n","d"),
-        :temp_max => i["main"]["temp_max"].floor(),
-        :temp_min => i["main"]["temp_min"].floor()
+        :temp_max => i["main"]["temp_max"].floor(1),
+        :temp_min => i["main"]["temp_min"].floor(1)
       }
-      @weather_list << data
     end
+    list_grp = list.group_by { |i| i[:dt_txt]}
+    list_grp.each do |data|
+      @weather_list << {
+        :dt_txt => data[1][0][:dt_txt],
+        :icon => data[1][0][:icon],
+        :temp_max => data[1].max_by {|hash| hash[:temp_max]}[:temp_max],
+        :temp_min => data[1].min_by {|hash| hash[:temp_min]}[:temp_min]
+      }
+    end
+    # ３日分を表示
+    @weather_list = @weather_list.take(3)
   end
 end
