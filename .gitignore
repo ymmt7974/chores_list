@@ -26,7 +26,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/environments/db.env
-
 # 環境変数設定ファイル
-/.env
+/environments/*

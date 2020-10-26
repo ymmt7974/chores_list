@@ -16,6 +16,5 @@ test:
 
 production:
   <<: *default
-  database: chores_list_production
-  username: chores_list
-  password: <%= ENV['CHORES_LIST_DATABASE_PASSWORD'] %>
+  database: chores_list
+  host: <%= ENV['DB_HOST'] %>

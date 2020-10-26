@@ -5,26 +5,15 @@ services:
       context: .
     env_file:
       - ./environments/.env
-      - ./environments/db.env
+      - ./environments/db.production.env
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/chores_list
-      - gem_data:/usr/local/bundle
       - public-data:/chores_list/public
       - tmp-data:/chores_list/tmp
-      # - log-data:/chores_list/log
-    depends_on:
-      - db
+      - log-data:/chores_list/log
     stdin_open: true
     tty: true
-  db:
-    image: mysql:5.7
-    env_file:
-      - ./environments/db.env
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
   web:
     build:
       context: containers/nginx
@@ -36,8 +25,6 @@ services:
     depends_on:
       - app
 volumes:
-  gem_data:
   public-data:
   tmp-data:
-  # log-data:
-  db-data:
+  log-data:
