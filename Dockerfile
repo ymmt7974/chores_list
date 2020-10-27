@@ -1,6 +1,9 @@
 FROM ruby:2.6.6
 
-# # 日本語ロケールへの変更
+# 本番環境の場合はコメントはずす
+# ENV RAILS_ENV="production"
+
+# 日本語ロケールへの変更
 RUN apt-get update && \
     apt-get install -y \
     locales && \
