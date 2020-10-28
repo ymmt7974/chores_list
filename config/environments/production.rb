@@ -82,7 +82,7 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
   # default url
-  config.action_mailer.default_url_options = { host: "http://#{ENV['HOST_IPADDRES']}" }
+  config.action_mailer.default_url_options = { host: "http://#{ENV['HOST_NAME']}" }
   # mailer setting
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
