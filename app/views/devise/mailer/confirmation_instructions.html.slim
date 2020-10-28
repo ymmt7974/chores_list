@@ -1,8 +1,22 @@
-p
-  | Welcome 
-  = @email
-  | !
-p
-  | You can confirm your account email through the link below:
-p
-  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+- unless @resource.try(:unconfirmed_email?)
+  p
+    | こんにちは、 
+    = @resource.email
+    | さん
+  p
+    | お手伝いリストへようこそ! 
+  p
+    | 以下のリンクをクリックして、メールアドレスの確認を行ってください。
+  p
+    = link_to '確認する', confirmation_url(@resource, confirmation_token: @token)
+- else
+  p
+    | こんにちは、 
+    = @resource.unconfirmed_email
+    | さん
+  p
+    | 以下のリンクをクリックして、メールアドレスの確認を行ってください。
+  p
+    | メールアドレスの変更が完了します。
+  p
+    = link_to '確認する', confirmation_url(@resource, confirmation_token: @token)

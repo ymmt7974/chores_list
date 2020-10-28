@@ -59,8 +59,19 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # mailer setting
+
+  # default url
   config.action_mailer.default_url_options = { host: 'localhost', port: 80 }
+  # mailer setting
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :domain               => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => ENV['SMTP_USERNAME'],  # gmailアドレス
+    :password             => ENV['SMTP_PASSWORD'],  # gmailパスワード
+    :authentication       => :login,                # :login（パスワードをBase64でエンコードする）
+    :enable_starttls_auto => true                   # STARTTLSが有効かどうかを検出して有効
+  }
 end

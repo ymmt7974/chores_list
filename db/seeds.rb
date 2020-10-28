@@ -66,23 +66,23 @@ kids2 = foobar.profiles.create!(name: "キッズ２")
 
 # ================================================================
 
-User.create!(name:  "testuser",
-  email: "test@test.com",
-  password: "password",
-  confirmed_at: Time.now,
-  postal_code: "8120012")
+# User.create!(name:  "testuser",
+#   email: "test@test.com",
+#   password: "password",
+#   confirmed_at: Time.now,
+#   postal_code: "8120012")
 
-10.times do |n|
-  name  = "user#{n+1}"
-  email = "user#{n+1}@example.com"
-  password = "password"
-  User.create!(name: name,
-              email: email,
-              password: password,
-              confirmed_at: Time.now)
-end
+# 10.times do |n|
+#   name  = "user#{n+1}"
+#   email = "user#{n+1}@example.com"
+#   password = "password"
+#   User.create!(name: name,
+#               email: email,
+#               password: password,
+#               confirmed_at: Time.now)
+# end
 
-user = User.find_by(name: "testuser")
-(1..50).each do |n|
-  user.chores.create!(name: "お手伝い#{n}", point: n * 100, date_type: 0)
-end
+# user = User.find_by(name: "testuser")
+# (1..50).each do |n|
+#   user.chores.create!(name: "お手伝い#{n}", point: n * 100, date_type: 0)
+# end

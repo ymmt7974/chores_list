@@ -24,7 +24,7 @@
 
 $(document).on('turbolinks:load', function() {
   // flashメッセージスライドアップ
-  setTimeout("$('.flash').slideUp('slow')", 2000);
+  setTimeout("$('.flash').slideUp('slow')", 3000);
 
   // マイナス値：赤
   $(".td-point:contains('-')").addClass('text-danger');

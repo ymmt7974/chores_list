@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
       
       # お手伝いリスト取得
       @chores = search_chores_list(current_user.id, Time.current)
-      if current_user.postal_code
+      if current_user.postal_code.present?
         fetch_weather     # 天気予報取得
       end
     end
@@ -58,7 +58,6 @@ class StaticPagesController < ApplicationController
       
     uri = URI.parse("https://api.openweathermap.org/data/2.5/forecast?units=metric&#{params},jp")
 
-    Rails.logger.error([uri.host, uri.port].join(" : "))
     # # 結果をresponseへ格納
     # response = Net::HTTP.get_response(uri)
     # result = JSON.parse(response.body)

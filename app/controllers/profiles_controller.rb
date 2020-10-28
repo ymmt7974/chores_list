@@ -4,8 +4,8 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = current_user.profiles
-    unless @profiles
-      flash.now[:notice] = "プロフィールを新規登録してください。"
+    unless @profiles.present?
+      flash[:notice] = "プロフィールを新規登録してください。"
       redirect_to new_profile_url
     end
   end
