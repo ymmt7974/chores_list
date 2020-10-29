@@ -1,6 +1,5 @@
 # README
 
-
 ## 概要
 転職活動用にRailsで作ったポートフォリオを作成  
 
@@ -22,39 +21,43 @@
   - [ ] Amazon API；商品検索
 - [x] Docker
 - [ ] CircleCI
-- [ ] AWS（EC2,SES,S3）
+- [x] AWS（EC2,RDS,Route53）
+
+
 #### Docker
-Dockerはコンテナ型仮想環境
+Dockerはコンテナ型仮想環境  
 (理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
 
 #### CircleCI
-CircleCIはSaas型のCI/CDサービス
+CircleCIはSaas型のCI/CDサービス  
 (理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
 
 #### AWS EC2
-本番環境としてAWS EC2を使用
+本番環境としてAWS EC2を使用  
 (理由)クラウドサービスを利用する経験を積むため。
 
 
 
 
 ## 環境
-【開発環境】
+#### 【開発環境】
 - Mac
 - Docker
   - Nginx
   - Ruby
   - MySql
 
-【本番環境】
-- AWS（EC2,SES,S3）
-- CircleCI
+#### 【本番環境】
+- AWS（EC2,RDS,Route53）
+- Docker
+  - Nginx
+  - Ruby
+- CircleCI ※今後導入予定
 
-```Herokuにデプロイ中```  
-https://chores-list.herokuapp.com/
+http://chores-listcom/
 
 ## お手伝いリスト(ChoresList)について
-ファミリー向けのWebアプリケーション  
+ファミリー向けのWebアプリ   
 日々のお手伝いにポイントを設定することで、お手伝いをゲームのように楽しみながらできる。
 
 ## 機能要件
@@ -93,8 +96,8 @@ https://chores-list.herokuapp.com/
 - [ ] プロフィールロック機能（暗証番号：4桁）
 - [x] 郵便番号による住所検索（API）
 - [x] 天気予報表示（OpenWeatherMapのAPI）
-- [ ] Amazonの商品情報表示（AmazonのAPI）
+- [ ] Amazonの商品情報表示（Amazon API）
 
- 
+
 > - [x] 対応済
 > - [ ] 未対応
