@@ -47,13 +47,17 @@ Saas型のCI/CDサービス
 - Docker（Nginx + Ruby）
 - CircleCI　※今後導入予定
 
-http://chores-listcom/
+![本番環境_構成図](https://user-images.githubusercontent.com/59510947/97552754-0035df80-1a18-11eb-895d-a0fd38439598.png)
+
 
 ## お手伝いリスト(ChoresList)について
 ファミリー向けのWebアプリ   
 日々のお手伝いにポイントを設定することで、お手伝いをゲームのように楽しみながらできる。
+http://chores-listcom/
 
-## 機能要件
+![site image](https://user-images.githubusercontent.com/59510947/97551522-6cafdf00-1a16-11eb-8e6a-819bb2a9f923.png)
+
+## 機能
 【TOP】
 - [x] ログイン・ログアウト機能
 - [x] アカウント新規作成機能
