@@ -9,50 +9,43 @@
 - RailsチュートリアルでHerokuにデプロイしたが、今後AWS EC2などのクラウド環境上にアプリをデプロイしてみたい
 
 
-## 使用する技術、やりたいこと 
-- [x] Ruby 2.6.6
-- [x] Ruby on Rails 5.2
-- [x] Bootstrap4
-  - [x] レシポンシブデザインに対応
-- [x] RSpecでテスト
-- [x] Ajaxを使った非同期処理
-- [x] APIを使用する
-  - [x] 天気予報
-  - [ ] Amazon API；商品検索
-- [x] Docker
-- [ ] CircleCI
-- [x] AWS（EC2,RDS,Route53）
+## 使用技術、やりたいこと 
+- Ruby 2.6.6
+- Ruby on Rails 5.2
+- MySQL 8.0
+- Nginx
+- Bootstrap4
+- Docker
+- AWS（EC2,RDS,EIP,Route53）
+- CircleCI
+- RSpecでテスト
+- Ajaxを使った非同期処理
+- APIを使用する
 
 
 #### Docker
-Dockerはコンテナ型仮想環境  
+コンテナ型仮想環境  
 (理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
+
+#### AWS
+本番環境としてAWSサービスを使用  
+(理由)ネットワーク・サーバー構築の技術を学び、クラウドサービスを利用する経験を積むため。
 
 #### CircleCI
-CircleCIはSaas型のCI/CDサービス  
-(理由)Web系の現場でよく使われている技術で、現場を意識して構築してみようと思ったため。
-
-#### AWS EC2
-本番環境としてAWS EC2を使用  
-(理由)クラウドサービスを利用する経験を積むため。
+Saas型のCI/CDサービス  
+(理由)CI/CDツールを導入することで、バグの検出やデプロイ作業を効率よく行うため。
 
 
 
 
 ## 環境
 #### 【開発環境】
-- Mac
-- Docker
-  - Nginx
-  - Ruby
-  - MySql
+- Docker（Nginx + Ruby + MySql）
 
 #### 【本番環境】
 - AWS（EC2,RDS,Route53）
-- Docker
-  - Nginx
-  - Ruby
-- CircleCI ※今後導入予定
+- Docker（Nginx + Ruby）
+- CircleCI　※今後導入予定
 
 http://chores-listcom/
 
