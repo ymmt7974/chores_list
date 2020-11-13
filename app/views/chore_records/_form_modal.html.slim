@@ -10,7 +10,9 @@
       
       = form_with model: chore_record, remote: true, url: chore_records_path do |f| 
         .modal-body
-          h1.my-3.center= "#{chore.name}"
+          h1.my-2.center= "#{chore.name}"
+          div.my-2.text-muted
+            = simple_format(chore.description)
           .form-group
             = f.label :actual_date
             = f.date_field :actual_date, value: Time.current.strftime("%Y-%m-%d"), required: true \

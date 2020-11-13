@@ -6,6 +6,10 @@ class Point < ApplicationRecord
   belongs_to :chore, optional: true
   belongs_to :reword, optional: true
 
+  # -- [validation] --
+  validates :point, presence: true
+  validates :event, presence: true
+
   # -- [scope] --
   # 最新を取得
   scope :recent, -> { order(created_at: :desc)}

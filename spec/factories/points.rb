@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :point do
-    point { 1 }
+    point { 100 }
     event { 1 }
     profile
   end

@@ -25,8 +25,8 @@ describe User, type: :model do
       expect(user.errors.full_messages).to include("メールアドレスを入力してください")
     end
     it '重複したメールアドレスの場合、無効である' do
-      user = FactoryBot.create(:user)
-      another_user = FactoryBot.build(:user)
+      user = FactoryBot.create(:user, email: "test@example.com")
+      another_user = FactoryBot.build(:user, email: "test@example.com")
       another_user.valid?
       expect(another_user.errors.full_messages).to include("メールアドレスはすでに存在します")
     end
