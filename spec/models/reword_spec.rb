@@ -9,25 +9,60 @@ RSpec.describe Reword, type: :model do
       expect(reword).to be_valid
     end
 
-    it '名前がない場合、無効' do
-      reword = FactoryBot.build(:reword, name: "")
-      reword.valid?
-      expect(reword.errors.full_messages).to include("商品名を入力してください")
+    describe '名前' do
+      it '空白の場合、無効' do
+        reword = FactoryBot.build(:reword, name: "")
+        reword.valid?
+        expect(reword.errors.full_messages).to include("商品名を入力してください")
+      end
+      it '29文字の場合、有効' do
+        reword = FactoryBot.build(:reword, name: "品" * 29)
+        expect(reword).to be_valid
+      end
+      it '30文字の場合、有効' do
+        reword = FactoryBot.build(:reword, name: "品" * 30)
+        expect(reword).to be_valid
+      end
+      it '31文字の場合、無効' do
+        reword = FactoryBot.build(:reword, name: "品" * 31)
+        reword.valid?
+        expect(reword.errors.full_messages).to include("商品名は30文字以内で入力してください")
+      end
     end
-    it '名前が30文字を超えた場合、無効' do
-      reword = FactoryBot.build(:reword, name: "品" * 31 )
-      reword.valid?
-      expect(reword.errors.full_messages).to include("商品名は30文字以内で入力してください")
+    describe '説明' do
+      it '空白の場合、有効' do
+        reword = FactoryBot.build(:reword, description: "")
+        expect(reword).to be_valid
+      end
+      it '254文字の場合、有効' do
+        reword = FactoryBot.build(:reword, description: "説" * 254)
+        expect(reword).to be_valid
+      end
+      it '255文字の場合、有効' do
+        reword = FactoryBot.build(:reword, description: "説" * 255)
+        expect(reword).to be_valid
+      end
+      it '256文字の場合、無効' do
+        reword = FactoryBot.build(:reword, description: "説" * 256)
+        reword.valid?
+        expect(reword.errors.full_messages).to include("説明は255文字以内で入力してください")
+      end
     end
-    it '説明が255文字を超えた場合、無効' do
-      reword = FactoryBot.build(:reword, description: "説" * 256 )
-      reword.valid?
-      expect(reword.errors.full_messages).to include("説明は255文字以内で入力してください")
-    end
-    it '必要ポイントがない場合、無効' do
-      reword = FactoryBot.build(:reword, cost_point: nil)
-      reword.valid?
-      expect(reword.errors.full_messages).to include("必要ポイントを入力してください")
+    describe '必要ポイント' do
+      it '空白の場合、無効' do
+        reword = FactoryBot.build(:reword, cost_point: nil)
+        reword.valid?
+        expect(reword.errors.full_messages).to include("必要ポイントを入力してください")
+      end
+      it '0の場合、有効' do
+        reword = FactoryBot.build(:reword, cost_point: 0)
+        expect(reword).to be_valid
+      end
+      it 'マイナスの場合、無効' do
+        reword = FactoryBot.build(:reword, cost_point: -1)
+        reword.valid?
+        expect(reword.errors.full_messages).to include("必要ポイントは0以上の値にしてください")
+      end
     end
   end
 end
