@@ -33,12 +33,12 @@ h1= t('.title')
           data: { confirm: "お手伝い「#{@chore.name}」を削除します。よろしいですか？" }, \
           class: 'btn btn-danger mr-3'
 
-
+  .my-3
   .col-md-7
-    .card.my-3
+    .card.
       .card-header お手伝い履歴
       .card-body.card-body_h500
-        table.table.table-hover
+        table.table.table-hover.chore_records
           thead.thead-default
             tr
               th style="width: 20%;"= t(".operater")
