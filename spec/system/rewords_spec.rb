@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'お手伝い記録', type: :system, js: true do
-  let(:user_a) { FactoryBot.create(:user, name:'ユーザーA', email: 'a@test.com') }
-  # let(:user_b) { FactoryBot.create(:user, name:'ユーザーB', email: 'b@test.com') }
-  let!(:profile_admin) { FactoryBot.create(:profile, name:'管理者', user: user_a) }
-  let!(:profile_kids) { FactoryBot.create(:profile, name:'キッズ', user: user_a) }
+  let(:user_a) { FactoryBot.create(:user, :with_profiles) }
+  let!(:point_kids) { FactoryBot.create(:point, name:'キッズ', user: user_a) }
+  # let!(:reword_a) { FactoryBot.create(:reword, name:'ご褒美A', description: 'ご褒美Aの説明', 
+  #                                     cost_point: 100, user: user_a) }
+  # let!(:reword_b) { FactoryBot.create(:reword, name:'ご褒美B', description: 'ご褒美Bの説明', 
+  #                                     cost_point: 200, user: user_b) }
 
   let(:login_user) { user_a }
 

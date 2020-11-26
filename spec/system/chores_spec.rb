@@ -4,7 +4,7 @@ describe 'お手伝いリスト管理', type: :system do
   let(:user_a) { FactoryBot.create(:user, name:'ユーザーA', email: 'a@test.com') }
   let(:user_b) { FactoryBot.create(:user, name:'ユーザーB', email: 'b@test.com') }
   let!(:chore_a) { FactoryBot.create(:chore, name:'最初のお手伝い', user: user_a) }
-  let!(:profile) { FactoryBot.create(:profile, name:'管理者', user: login_user) }
+  let!(:profile) { FactoryBot.create(:profile, user: login_user) }
 
   before do
     # ログイン
