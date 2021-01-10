@@ -9,7 +9,7 @@ h1= t('title')
         = render 'weather', user: current_user
   .col-md-8
     .card
-      .card-header 今日のお手伝いリスト
+      .card-header="今日のお手伝いリスト（#{l(Time.current, format: :date_short)}）"
       .card-body.chores-list.pt-0.px-2
         = render 'chores', chores: @chores
         
